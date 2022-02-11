@@ -3,8 +3,8 @@ package model;
 // Represents a course having a subject code and a course number
 public class Course {
 
-    private String code;         // subject code of the course
-    private int number;          // course number
+    private static String code;         // subject code of the course
+    private static int number;          // course number
 
     /*
     REQUIRES:
@@ -17,12 +17,14 @@ public class Course {
         this.number = courseNumber;
     }
 
+
+
     // getters
-    public String getCode() {
+    public static String getCode(Course course) {
         return code;
     }
 
-    public int getNumber() {
+    public static int getNumber(Course course) {
         return number;
     }
 
