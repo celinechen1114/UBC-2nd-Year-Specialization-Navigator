@@ -21,13 +21,14 @@ public class Major {
     // prerequisites for math major
     public static final Course MATHEMATICS = new Course("MATH 101");
 
-
+    //EFFECTS: constructs a Major with the given name
     public Major(String name) {
         majorName = name;
         prerequisiteHelper();
     }
 
-    // helper method: assign corresponding prerequisites to the given major name
+    // EFFECTS: returns true if the major exists and assign corresponding prerequisite to the given major name
+    //          returns false if the major does not exist
     public boolean prerequisiteHelper() {
         if (majorName.equals("Biology")) {
             prerequisites = BIOLOGY;
@@ -51,11 +52,6 @@ public class Major {
         return majorName;
     }
 
-    /*
-        public static Major getMajor(String majorName) {
-            return new Major(majorName);
-        }
-    */
     public Course getPrerequisites() {
         return prerequisites;
     }

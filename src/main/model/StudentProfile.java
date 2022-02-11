@@ -49,6 +49,8 @@ public class StudentProfile {
 
     /*
     EFFECTS: check if the list of courses given satisfies the requirements of the specialization given
+             returns true if the prerequisites course exits on the student's completed courses
+             returns false otherwise
      */
     public boolean checkEligibility() {
         List<String> myCourseNames = new ArrayList<String>();
@@ -89,6 +91,7 @@ public class StudentProfile {
         return this.major;
     }
 
+    //EFFECTS: get the major name of the major assigned to this profile
     public String getMajorName() {
         return major.getMajorName();
     }

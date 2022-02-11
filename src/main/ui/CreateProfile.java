@@ -55,7 +55,7 @@ public class CreateProfile {
     }
 
     // MODIFIES: this
-    // EFFECTS: initializes accounts
+    // EFFECTS: initializes student profile
     private void init() {
         student = new StudentProfile("Celine", "Chen", 44176873);
         input = new Scanner(System.in);
@@ -103,7 +103,6 @@ public class CreateProfile {
 
 
     // EFFECTS: Change a new intended major to student profile
-    // !!! Celine: later add in a function to ensure that you can not change to your current major
     private void doChangeMajor() {
         System.out.print("Select the major you want to change to from the following majors");
 
@@ -147,6 +146,7 @@ public class CreateProfile {
 
     }
 
+    // EFFECTS: check if the student is eligible to apply for their intended major
     private void doCheckEligibility() {
         if (student.getCourseList().isEmpty()) {
             System.out.print("\n courses you have already completed need to be added first");
