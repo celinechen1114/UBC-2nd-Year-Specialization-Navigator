@@ -6,12 +6,13 @@ package model;
 import javax.swing.plaf.ColorUIResource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class StudentProfile {
     private String firstName;              // first name of the user (of this degree navigator)
     private String lastName;               // last name of the user
     private int id;                        // student id
-    private List<Course> courseList;  // list of 1st year courses the student have taken
+    private List<Course> courseList;       // list of 1st year courses the student have taken
     private Major major;                   // the intended major the student is planning to apply
 
 
@@ -50,7 +51,17 @@ public class StudentProfile {
     EFFECTS: check if the list of courses given satisfies the requirements of the specialization given
      */
     public boolean checkEligibility() {
-        if (courseList.contains(major.prerequisiteHelper())) {
+        List<String> myCourseNames = new ArrayList<String>();
+
+        for (Course course:courseList) {
+            String courseName = course.getName();
+            myCourseNames.add(courseName);
+        }
+
+        Course prerequisiteCourse = major.getPrerequisites();
+        String namePrerequisiteCourse = prerequisiteCourse.getName();
+
+        if (myCourseNames.contains(namePrerequisiteCourse)) {
             return true;
         } else {
             return false;
@@ -74,7 +85,11 @@ public class StudentProfile {
         return courseList;
     }
 
-    public String getMajor() {
+    public Major getMajor() {
+        return this.major;
+    }
+
+    public String getMajorName() {
         return major.getMajorName();
     }
 }

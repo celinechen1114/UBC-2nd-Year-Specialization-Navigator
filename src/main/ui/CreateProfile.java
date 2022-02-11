@@ -75,12 +75,11 @@ public class CreateProfile {
 
     // EFFECTS: add an intended major to student profile
     private void doAddMajor() {
-        System.out.print("Select the major you intend to apply to from the following majors");
-        System.out.println("\nBIOL for Biology");
+
+        System.out.println("BIOL for Biology");
         System.out.println("CHEM for Chemistry");
         System.out.println("CPSC for Computer Science");
         System.out.println("MATH for Mathematics");
-
         String selection = input.next();
         selection = selection.toUpperCase();
 
@@ -108,12 +107,14 @@ public class CreateProfile {
     private void doChangeMajor() {
         System.out.print("Select the major you want to change to from the following majors");
 
-        System.out.println("\nBIOL for Biology");
+        System.out.println("BIOL for Biology");
         System.out.println("CHEM for Chemistry");
         System.out.println("CPSC for Computer Science");
         System.out.println("MATH for Mathematics");
 
         String selection = input.next();
+        selection = selection.toUpperCase();
+
         if (selection.equals("BIOL")) {
             student.addMajor("Biology");
             System.out.println("\n Biology has chosen to be your new intended major\n");
@@ -149,18 +150,14 @@ public class CreateProfile {
     private void doCheckEligibility() {
         if (student.getCourseList().isEmpty()) {
             System.out.print("\n courses you have already completed need to be added first");
+        } else if (student.getMajor() == null) {
+            System.out.print("\n an intended major need to be added first");
+            return;
+        } else if (student.checkEligibility()) {
+            System.out.print("\n you are eligible to apply for you intended major this May");
         } else {
-            if (student.checkEligibility()) {
-                System.out.print("\n you are eligible to apply for you intended major this May");
-            } else {
-                System.out.print("\n you are not eligible to apply for you intended major this May");
-            }
+            System.out.print("\n you are not eligible to apply for you intended major this May");
         }
-
     }
-    ////(student.getMajor().isEmpty()) {
-    //            System.out.print("\n an intended major need to be added first");
-    //            return;
-    //        } else
 
 }

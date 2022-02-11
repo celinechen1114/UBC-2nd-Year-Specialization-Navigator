@@ -27,11 +27,7 @@ interaction component to it and are more direct, efficient, and personal for a s
 ## User Stories
 *PHASE ONE*
 * As a user, I want to be able to add in a courses to my student profile
-* As a user, I want to be able to view the list of courses on my student profile
-* As a user, I want to be able to add in the corresponding percentage grade for each course 
-* As a user, I want to be able to delete a courses from my student profile 
 * As a user, I want to pick an intended specialization and add to my student profile
-
-*PHASE TWO*
+* As a user, I want to change the intended specialization and update my student profile
 * As a user, I want to check if the courses I have added to my student profile meet the requirements
 to apply for my intended specialization

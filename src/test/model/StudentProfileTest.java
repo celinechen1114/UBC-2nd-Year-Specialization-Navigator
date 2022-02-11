@@ -33,11 +33,35 @@ class StudentProfileTest {
         assertEquals("BIOL 112", courseList.get(1).getName());
     }
 
-    @Test //add a major to student profile
-    public void addMajorTest() {
+    @Test //add a Biology major to student profile
+    public void addBiologyMajorTest() {
         StudentProfile sp = new StudentProfile("Celine", "Chen", 44176873);
         sp.addMajor("Biology");
-        assertEquals("Biology", sp.getMajor());
+        assertEquals("Biology", sp.getMajorName());
+        assertTrue(sp.getMajor().prerequisiteHelper());
+    }
+
+    @Test //add a Chemistry major to student profile
+    public void addChemistryMajorTest() {
+        StudentProfile sp = new StudentProfile("Celine", "Chen", 44176873);
+        sp.addMajor("Chemistry");
+        assertEquals("Chemistry", sp.getMajorName());
+        assertTrue(sp.getMajor().prerequisiteHelper());
+    }
+
+    @Test //add a Math major to student profile
+    public void addMathMajorTest() {
+        StudentProfile sp = new StudentProfile("Celine", "Chen", 44176873);
+        sp.addMajor("Mathematics");
+        assertEquals("Mathematics", sp.getMajorName());
+        assertTrue(sp.getMajor().prerequisiteHelper());
+    }
+
+    @Test //add a non-existing major to student profile
+    public void addFailedMajorTest() {
+        StudentProfile sp = new StudentProfile("Celine", "Chen", 44176873);
+        sp.addMajor("Law");
+        assertFalse(sp.getMajor().prerequisiteHelper());
     }
 
     @Test //check if the student is eligible to apply for the major given the courses the student have taken
@@ -50,7 +74,7 @@ class StudentProfileTest {
         assertFalse(sp.checkEligibility());
     }
 
-   /*
+
     @Test //check if the student is eligible to apply for the major given the courses the student have taken
           // [true case]
     public void checkEligibilityTrueTest() {
@@ -60,6 +84,5 @@ class StudentProfileTest {
         sp.addCourse("BIOL 112");
         assertTrue(sp.checkEligibility());
     }
-    */
 
 }
