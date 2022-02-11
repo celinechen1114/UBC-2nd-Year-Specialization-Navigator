@@ -76,18 +76,14 @@ public class CreateProfile {
     // EFFECTS: add an intended major to student profile
     private void doAddMajor() {
         System.out.print("Select the major you intend to apply to from the following majors");
+        System.out.println("\nBIOL for Biology");
+        System.out.println("CHEM for Chemistry");
+        System.out.println("CPSC for Computer Science");
+        System.out.println("MATH for Mathematics");
 
-        String selection = "";  // force entry into loop
+        String selection = input.next();
+        selection = selection.toUpperCase();
 
-        while (!(selection.equals("BIOL") || selection.equals("CHEM") || selection.equals("CPSC")
-                || selection.equals("MATH"))) {
-            System.out.println("\nBIOL for Biology");
-            System.out.println("CHEM for Chemistry");
-            System.out.println("CPSC for Computer Science");
-            System.out.println("MATH for Mathematics");
-            selection = input.next();
-            selection = selection.toUpperCase();
-        }
 
         if (selection.equals("BIOL")) {
             student.addMajor("Biology");
@@ -111,15 +107,13 @@ public class CreateProfile {
     // !!! Celine: later add in a function to ensure that you can not change to your current major
     private void doChangeMajor() {
         System.out.print("Select the major you want to change to from the following majors");
-        String selection = "";  // force entry into loop
-        while (!(selection.equals("BIOL") || selection.equals("CHEM") || selection.equals("CPSC")
-                || selection.equals("MATH"))) {
-            System.out.println("BIOL for Biology");
-            System.out.println("CHEM for Chemistry");
-            System.out.println("CPSC for Computer Science");
-            System.out.println("MATH for Mathematics");
-        }
-        selection = input.next();
+
+        System.out.println("\nBIOL for Biology");
+        System.out.println("CHEM for Chemistry");
+        System.out.println("CPSC for Computer Science");
+        System.out.println("MATH for Mathematics");
+
+        String selection = input.next();
         if (selection.equals("BIOL")) {
             student.addMajor("Biology");
             System.out.println("\n Biology has chosen to be your new intended major\n");
