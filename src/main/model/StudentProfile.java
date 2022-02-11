@@ -35,8 +35,7 @@ public class StudentProfile {
     EFFECTS: add course given to the list of courses the student have already taken
     */
     public void addCourse(String myCourse) {
-        Course addedCourse = new Course(myCourse);
-        this.courseList.add(addedCourse);
+        this.courseList.add(new Course(myCourse));
     }
 
     /*
@@ -51,7 +50,7 @@ public class StudentProfile {
     EFFECTS: check if the list of courses given satisfies the requirements of the specialization given
      */
     public boolean checkEligibility() {
-        if (courseList.contains(major.prerequisiteHelper(String.valueOf(major)))) {
+        if (courseList.contains(major.prerequisiteHelper())) {
             return true;
         } else {
             return false;
@@ -75,7 +74,7 @@ public class StudentProfile {
         return courseList;
     }
 
-    public Major getMajor() {
-        return major;
+    public String getMajor() {
+        return major.getMajorName();
     }
 }

@@ -81,7 +81,7 @@ public class CreateProfile {
 
         while (!(selection.equals("BIOL") || selection.equals("CHEM") || selection.equals("CPSC")
                 || selection.equals("MATH"))) {
-            System.out.println("BIOL for Biology");
+            System.out.println("\nBIOL for Biology");
             System.out.println("CHEM for Chemistry");
             System.out.println("CPSC for Computer Science");
             System.out.println("MATH for Mathematics");
@@ -111,22 +111,18 @@ public class CreateProfile {
     // !!! Celine: later add in a function to ensure that you can not change to your current major
     private void doChangeMajor() {
         System.out.print("Select the major you want to change to from the following majors");
-
         String selection = "";  // force entry into loop
-
         while (!(selection.equals("BIOL") || selection.equals("CHEM") || selection.equals("CPSC")
                 || selection.equals("MATH"))) {
             System.out.println("BIOL for Biology");
             System.out.println("CHEM for Chemistry");
             System.out.println("CPSC for Computer Science");
             System.out.println("MATH for Mathematics");
-            selection = input.next();
-            selection = selection.toUpperCase();
         }
-
+        selection = input.next();
         if (selection.equals("BIOL")) {
             student.addMajor("Biology");
-            System.out.println("Biology has chosen to be your new intended major\n");
+            System.out.println("\n Biology has chosen to be your new intended major\n");
         } else if (selection.equals("CHEM")) {
             student.addMajor("Chemistry");
             System.out.println("Chemistry has chosen to be your new intended major\n");
@@ -145,11 +141,11 @@ public class CreateProfile {
     private void doAddCourse() {
         System.out.print("\n Enter the course name in the format of 4 letter subject code,");
         System.out.print("followed by a space, and then the 3 digit course number");
-        System.out.print("for example: MATH 100");
+        System.out.print("for example: MATH 100 \n");
         String courseName = input.next();
-        if (9 == courseName.length()) {
+        if (8 == courseName.length()) {
             student.addCourse(courseName);
-            System.out.print("\n" + courseName + "successfully added");
+            System.out.print("\n" + courseName + " successfully added");
         } else {
             System.out.print("\n course name invalid");
         }

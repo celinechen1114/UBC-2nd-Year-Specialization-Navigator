@@ -3,7 +3,7 @@ package model;
 // Represents a course having a name
 public class Course {
 
-    private static String name;         // name of the course
+    private String name;         // name of the course
 
     /*
     REQUIRES:
@@ -15,7 +15,7 @@ public class Course {
     }
 
     // getters
-    public static String getName(Course course) {
+    public String getName() {
         return name;
     }
 

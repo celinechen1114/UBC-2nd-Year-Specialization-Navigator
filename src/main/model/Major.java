@@ -6,8 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Major {
-    public static String majorName;             // the name of the major
-    public static List<Course> prerequisites;   // list of first-year prerequisites for the major
+    private  String majorName;             // the name of the major
+    private  List<Course> prerequisites;   // list of first-year prerequisites for the major
 
     // prerequisites for biology major
     public static final Course[] BIOLOGY = {new Course("CHEM 121"),
@@ -29,22 +29,22 @@ public class Major {
 
     public Major(String name) {
         majorName = name;
-        prerequisiteHelper(name);
+        prerequisiteHelper();
     }
 
     // helper method: assign corresponding prerequisites to the given major name
-    public boolean prerequisiteHelper(String name) {
-        if (name.equals("Biology")) {
-            this.prerequisites = Arrays.asList(BIOLOGY);
+    public boolean prerequisiteHelper() {
+        if (majorName.equals("Biology")) {
+            prerequisites = Arrays.asList(BIOLOGY);
             return true;
-        } else if (name.equals("Chemistry")) {
-            this.prerequisites = Arrays.asList(CHEMISTRY);
+        } else if (majorName.equals("Chemistry")) {
+            prerequisites = Arrays.asList(CHEMISTRY);
             return true;
-        } else if (name.equals("Computer Science")) {
-            this.prerequisites = Arrays.asList(COMPUTER_SCIENCE);
+        } else if (majorName.equals("Computer Science")) {
+            prerequisites = Arrays.asList(COMPUTER_SCIENCE);
             return true;
-        } else if (name.equals("Mathematics")) {
-            this.prerequisites = Arrays.asList(MATHEMATICS);
+        } else if (majorName.equals("Mathematics")) {
+            prerequisites = Arrays.asList(MATHEMATICS);
             return true;
         } else {
             return false;
@@ -53,7 +53,7 @@ public class Major {
 
     //getter methods
     public String getMajorName() {
-        return this.majorName;
+        return majorName;
     }
 
     /*
@@ -62,6 +62,6 @@ public class Major {
         }
     */
     public List<Course> getPrerequisites() {
-        return this.prerequisites;
+        return prerequisites;
     }
 }
