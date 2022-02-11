@@ -1,31 +1,22 @@
 package model;
 
-// Represents a course having a subject code and a course number
+// Represents a course having a name
 public class Course {
 
-    private static String code;         // subject code of the course
-    private static int number;          // course number
+    private static String name;         // name of the course
 
     /*
     REQUIRES:
 
 
      */
-
-    public Course(String subjectCode, int courseNumber) {
-        this.code = subjectCode;
-        this.number = courseNumber;
+    public Course(String courseName) {
+        this.name = courseName;
     }
-
-
 
     // getters
-    public static String getCode(Course course) {
-        return code;
-    }
-
-    public static int getNumber(Course course) {
-        return number;
+    public static String getName(Course course) {
+        return name;
     }
 
 }

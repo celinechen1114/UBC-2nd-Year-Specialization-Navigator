@@ -6,34 +6,34 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Major {
-    private String majorName;             // the name of the major
-    private List<Course> prerequisites;   // list of first-year prerequisites for the major
+    public static String majorName;             // the name of the major
+    public static List<Course> prerequisites;   // list of first-year prerequisites for the major
 
     // prerequisites for biology major
-    public static final Course[] BIOLOGY = {new Course("CHEM", 121),
-            new Course("CHEM", 123),
-            new Course("BIOL", 140),
-            new Course("BIOL", 112)};
+    public static final Course[] BIOLOGY = {new Course("CHEM 121"),
+            new Course("CHEM 123"),
+            new Course("BIOL 140"),
+            new Course("BIOL 112")};
 
     // prerequisites for chemistry major
-    public static final Course[] CHEMISTRY = {new Course("CHEM", 121),
-            new Course("CHEM", 123),
-            new Course("MATH", 101)};
+    public static final Course[] CHEMISTRY = {new Course("CHEM 121"),
+            new Course("CHEM 123"),
+            new Course("MATH 101")};
 
     // prerequisites for computer science major
-    public static final Course[] COMPUTER_SCIENCE = {new Course("CPSC", 110)};
+    public static final Course[] COMPUTER_SCIENCE = {new Course("CPSC 110")};
 
     // prerequisites for math major
-    public static final Course[] MATHEMATICS = {new Course("MATH", 101)};
+    public static final Course[] MATHEMATICS = {new Course("MATH 101")};
 
 
     public Major(String name) {
-        this.majorName = name;
-        this.prerequisites = (List<Course>) prerequisiteHelper(name);
+        majorName = name;
+        prerequisiteHelper(name);
     }
 
     // helper method: assign corresponding prerequisites to the given major name
-    public Object prerequisiteHelper(String name) {
+    public boolean prerequisiteHelper(String name) {
         if (name.equals("Biology")) {
             this.prerequisites = Arrays.asList(BIOLOGY);
             return true;
@@ -56,6 +56,11 @@ public class Major {
         return this.majorName;
     }
 
+    /*
+        public static Major getMajor(String majorName) {
+            return new Major(majorName);
+        }
+    */
     public List<Course> getPrerequisites() {
         return this.prerequisites;
     }

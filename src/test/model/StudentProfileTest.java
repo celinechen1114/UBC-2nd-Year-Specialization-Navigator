@@ -10,9 +10,8 @@ class StudentProfileTest {
 
     @Test //test Course Constructor
     public void CourseTest() {
-        Course course = new Course("MATH", 101);
-        assertEquals("MATH", course.getCode(course));
-        assertEquals(101, course.getNumber(course));
+        Course course = new Course("MATH 101");
+        assertEquals("MATH 101", course.getName(course));
     }
 
     @Test //test StudentProfile Constructor
@@ -26,19 +25,19 @@ class StudentProfileTest {
     @Test //add a course to student profile
     public void addCourseTest() {
         StudentProfile sp = new StudentProfile("Celine", "Chen", 44176873);
-        sp.addCourse("MATH", 101);
-        sp.addCourse("BIOL", 112);
+        sp.addCourse("MATH 101");
+        sp.addCourse("BIOL 112");
         List<Course> courseList = sp.getCourseList();
         assertEquals(2,courseList.size());
-        assertEquals(new Course("MATH", 101), Course.getCode(courseList.get(0)));
-        assertEquals(new Course("BIOL", 112), courseList.get(1));
+        assertEquals("MATH 101", Course.getName(courseList.get(0)));
+        assertEquals("BIOL 112", Course.getName(courseList.get(1)));
     }
 
     @Test //add a major to student profile
     public void addMajorTest() {
         StudentProfile sp = new StudentProfile("Celine", "Chen", 44176873);
         sp.addMajor("Biology");
-        //assertEquals("Biology", sp.g());
+        assertEquals("Biology", sp.getMajor());
 
     }
 
@@ -47,8 +46,8 @@ class StudentProfileTest {
     public void checkEligibilityFalseTest() {
         StudentProfile sp = new StudentProfile("Celine", "Chen", 44176873);
         sp.addMajor("Computer Science");
-        sp.addCourse("MATH", 101);
-        sp.addCourse("BIOL", 112);
+        sp.addCourse("MATH 101");
+        sp.addCourse("BIOL 112");
         assertFalse(sp.checkEligibility());
     }
 
@@ -57,8 +56,8 @@ class StudentProfileTest {
     public void checkEligibilityTrueTest() {
         StudentProfile sp = new StudentProfile("Celine", "Chen", 44176873);
         sp.addMajor("Computer Science");
-        sp.addCourse("CPSC", 110);
-        sp.addCourse("BIOL", 112);
+        sp.addCourse("CPSC 110");
+        sp.addCourse("BIOL 112");
         assertTrue(sp.checkEligibility());
     }
 
