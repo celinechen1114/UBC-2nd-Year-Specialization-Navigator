@@ -12,7 +12,7 @@ public class Course {
 
      */
 
-    public Course(String subjectCode, int courseNumber, int courseCredit) {
+    public Course(String subjectCode, int courseNumber) {
         this.code = subjectCode;
         this.number = courseNumber;
     }
