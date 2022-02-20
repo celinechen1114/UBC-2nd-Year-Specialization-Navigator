@@ -31,3 +31,8 @@ interaction component to it and are more direct, efficient, and personal for a s
 * As a user, I want to change the intended specialization and update my student profile
 * As a user, I want to check if the courses I have added to my student profile meet the requirements
 to apply for my intended specialization
+
+*PHASE ONE*
+* As a user, I want to be able to save my student profile to file
+* As a user, when I select the quit option from the application menu, I want to be reminded to save my student profile 
+to file and have the option to do so or not

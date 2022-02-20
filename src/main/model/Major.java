@@ -2,8 +2,6 @@ package model;
 
 // Represents a major and its list of first-year prerequisites
 
-import java.util.Arrays;
-import java.util.List;
 
 public class Major {
     private  String majorName;             // the name of the major

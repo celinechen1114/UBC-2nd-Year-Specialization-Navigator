@@ -1,11 +1,10 @@
 package ui;
 
 import model.StudentProfile;
-
 import java.util.Scanner;
 
-import static jdk.internal.dynalink.support.Guards.isNull;
 
+// making a  student profile application
 public class CreateProfile {
     private StudentProfile student;
     private Scanner input;
