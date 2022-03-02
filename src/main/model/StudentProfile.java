@@ -3,12 +3,16 @@ package model;
 // Represents a Degree Navigator for first year UBC Science students having a student id, student first name,
 // student last name, and a list of first year courses the student have taken
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import javax.swing.plaf.ColorUIResource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class StudentProfile {
+public class StudentProfile implements Writable {
     private String firstName;              // first name of the user (of this degree navigator)
     private String lastName;               // last name of the user
     private int id;                        // student id
@@ -94,5 +98,26 @@ public class StudentProfile {
     //EFFECTS: get the major name of the major assigned to this profile
     public String getMajorName() {
         return major.getMajorName();
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("first name", firstName);
+        json.put("last name", lastName);
+        json.put("student id", id);
+        json.put("course list", courseListToJson());
+        json.put("intended major", major);
+        return json;
+    }
+
+    // EFFECTS: returns course list in this student profile as a JSON array
+    private JSONArray courseListToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Course c : courseList) {
+            jsonArray.put(c.toJson());
+        }
+        return jsonArray;
     }
 }

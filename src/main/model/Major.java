@@ -3,7 +3,10 @@ package model;
 // Represents a major and its list of first-year prerequisites
 
 
-public class Major {
+import org.json.JSONObject;
+import persistence.Writable;
+
+public class Major implements Writable {
     private  String majorName;             // the name of the major
     private  Course prerequisites;   // list of first-year prerequisites for the major
 
@@ -52,5 +55,12 @@ public class Major {
 
     public Course getPrerequisites() {
         return prerequisites;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("major name", majorName);
+        return json;
     }
 }

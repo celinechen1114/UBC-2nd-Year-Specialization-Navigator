@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a course having a name
-public class Course {
+public class Course implements Writable {
 
     private String name;         // name of the course
 
@@ -19,4 +22,10 @@ public class Course {
         return name;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        return json;
+    }
 }
