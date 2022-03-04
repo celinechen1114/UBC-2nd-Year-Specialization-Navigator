@@ -17,7 +17,7 @@ public class StudentProfile implements Writable {
     private String lastName;               // last name of the user
     private int id;                        // student id
     private List<Course> courseList;       // list of 1st year courses the student have taken
-    private Major major;                   // the intended major the student is planning to apply
+    private String major;                   // the intended major the student is planning to apply
 
 
 
@@ -48,7 +48,7 @@ public class StudentProfile implements Writable {
     EFFECTS: add the intended major the student is planning to apply to the student profile
     */
     public void addMajor(String myMajor) {
-        this.major = new Major(myMajor);
+        this.major = myMajor;
     }
 
     /*
@@ -58,13 +58,13 @@ public class StudentProfile implements Writable {
      */
     public boolean checkEligibility() {
         List<String> myCourseNames = new ArrayList<String>();
-
+        Major myMajor = new Major(major);
         for (Course course:courseList) {
             String courseName = course.getName();
             myCourseNames.add(courseName);
         }
 
-        Course prerequisiteCourse = major.getPrerequisites();
+        Course prerequisiteCourse = myMajor.getPrerequisites();
         String namePrerequisiteCourse = prerequisiteCourse.getName();
 
         if (myCourseNames.contains(namePrerequisiteCourse)) {
@@ -91,14 +91,10 @@ public class StudentProfile implements Writable {
         return courseList;
     }
 
-    public Major getMajor() {
+    public String getMajor() {
         return this.major;
     }
 
-    //EFFECTS: get the major name of the major assigned to this profile
-    public String getMajorName() {
-        return major.getMajorName();
-    }
 
     @Override
     public JSONObject toJson() {

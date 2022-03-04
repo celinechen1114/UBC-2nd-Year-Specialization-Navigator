@@ -35,32 +35,42 @@ class StudentProfileTest {
     @Test //add a Biology major to student profile
     public void addBiologyMajorTest() {
         StudentProfile sp = new StudentProfile("Celine", "Chen", 44176873);
+
         sp.addMajor("Biology");
-        assertEquals("Biology", sp.getMajorName());
-        assertTrue(sp.getMajor().prerequisiteHelper());
+        assertEquals("Biology", sp.getMajor());
+
+        Major myMajor  = new Major (sp.getMajor());
+        assertTrue(myMajor.prerequisiteHelper());
     }
 
     @Test //add a Chemistry major to student profile
     public void addChemistryMajorTest() {
         StudentProfile sp = new StudentProfile("Celine", "Chen", 44176873);
+
         sp.addMajor("Chemistry");
-        assertEquals("Chemistry", sp.getMajorName());
-        assertTrue(sp.getMajor().prerequisiteHelper());
+        assertEquals("Chemistry", sp.getMajor());
+
+        Major myMajor  = new Major (sp.getMajor());
+        assertTrue(myMajor.prerequisiteHelper());
     }
 
     @Test //add a Math major to student profile
     public void addMathMajorTest() {
         StudentProfile sp = new StudentProfile("Celine", "Chen", 44176873);
         sp.addMajor("Mathematics");
-        assertEquals("Mathematics", sp.getMajorName());
-        assertTrue(sp.getMajor().prerequisiteHelper());
+        assertEquals("Mathematics", sp.getMajor());
+
+        Major myMajor  = new Major (sp.getMajor());
+        assertTrue(myMajor.prerequisiteHelper());
     }
 
     @Test //add a non-existing major to student profile
     public void addFailedMajorTest() {
         StudentProfile sp = new StudentProfile("Celine", "Chen", 44176873);
         sp.addMajor("Law");
-        assertFalse(sp.getMajor().prerequisiteHelper());
+
+        Major myMajor  = new Major (sp.getMajor());
+        assertFalse(myMajor.prerequisiteHelper());
     }
 
     @Test //check if the student is eligible to apply for the major given the courses the student have taken
