@@ -1,16 +1,15 @@
 package model;
 
-// Represents a Degree Navigator for first year UBC Science students having a student id, student first name,
-// student last name, and a list of first year courses the student have taken
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
-import javax.swing.plaf.ColorUIResource;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
+// Represents a Degree Navigator for first year UBC Science students having a student id, student first name,
+// student last name, and a list of first year courses the student have taken
 
 public class StudentProfile implements Writable {
     private String firstName;              // first name of the user (of this degree navigator)

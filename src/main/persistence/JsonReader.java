@@ -1,7 +1,5 @@
 package persistence;
 
-import model.Course;
-import model.Major;
 import model.StudentProfile;
 
 import java.io.IOException;

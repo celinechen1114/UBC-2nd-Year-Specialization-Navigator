@@ -1,11 +1,6 @@
 package model;
 
 // Represents a major and its list of first-year prerequisites
-
-
-import org.json.JSONObject;
-import persistence.Writable;
-
 public class Major {
     private  String majorName;             // the name of the major
     private  Course prerequisites;   // list of first-year prerequisites for the major
