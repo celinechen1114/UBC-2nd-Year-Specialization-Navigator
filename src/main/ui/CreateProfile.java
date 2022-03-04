@@ -1,16 +1,28 @@
 package ui;
 
 import model.StudentProfile;
+import persistence.JsonReader;
+import persistence.JsonWriter;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 
 // making a  student profile application
 public class CreateProfile {
+    private static final String JSON_STORE = "./data/studentProfile.json";
     private StudentProfile student;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: create a student profile
-    public CreateProfile() {
+    public CreateProfile() throws FileNotFoundException {
+        input = new Scanner(System.in);
+        student = new StudentProfile("first name", "last name", 12345678);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         makeProfile();
     }
 
@@ -19,6 +31,7 @@ public class CreateProfile {
     private void makeProfile() {
         boolean keepGoing = true;
         String command = null;
+        input = new Scanner(System.in);
 
         init();
 
@@ -48,6 +61,10 @@ public class CreateProfile {
             doChangeMajor();
         } else if (command.equals("ck")) {
             doCheckEligibility();
+        } else if (command.equals("s")) {
+            saveStudentProfile();
+        } else if (command.equals("l")) {
+            loadStudentProfile();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -68,6 +85,8 @@ public class CreateProfile {
         System.out.println("\tcm -> change intended major");
         System.out.println("\tac -> add a completed first year course");
         System.out.println("\tck -> check if I am eligible to apply for my intended major");
+        System.out.println("\ts -> save student profile to file");
+        System.out.println("\tl -> load student profile from file");
         System.out.println("\tq -> quit");
     }
 
@@ -151,11 +170,34 @@ public class CreateProfile {
             System.out.print("\n courses you have already completed need to be added first");
         } else if (student.getMajor() == null) {
             System.out.print("\n an intended major need to be added first");
-            return;
         } else if (student.checkEligibility()) {
             System.out.print("\n you are eligible to apply for you intended major this May");
         } else {
             System.out.print("\n you are not eligible to apply for you intended major this May");
+        }
+    }
+
+
+    // EFFECTS: saves the student profile to file
+    private void saveStudentProfile() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(student);
+            jsonWriter.close();
+            System.out.println("Saved " + student.getFirstName() + student.getLastName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads student file from file
+    private void loadStudentProfile() {
+        try {
+            student = jsonReader.read();
+            System.out.println("Loaded " + student.getFirstName() + student.getLastName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 
