@@ -35,3 +35,8 @@
 *PHASE TWO*
 * As a user, I want to be able to save my student profile to file
 * As a user, I want to be able to load my student profile to file
+
+
+## References:
+TellerApp: https://github.students.cs.ubc.ca/CPSC210/TellerApp
+JsonSerializationDemo: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git

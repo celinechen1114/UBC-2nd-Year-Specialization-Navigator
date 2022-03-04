@@ -2,8 +2,8 @@ package model;
 
 // Represents a major and its list of first-year prerequisites
 public class Major {
-    private  String majorName;             // the name of the major
-    private  Course prerequisites;   // list of first-year prerequisites for the major
+    private String majorName;             // the name of the major
+    private Course prerequisites;   // list of first-year prerequisites for the major
 
     // prerequisites for biology major
     public static final Course BIOLOGY = new Course("BIOL 112");

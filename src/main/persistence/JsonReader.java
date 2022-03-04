@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 import org.json.*;
 
 // Represents a reader that reads student profile from JSON data stored in file
+// NOTE: Methods in the class are referenced from the repository JsonSerializationDemo
 public class JsonReader {
     private String source;
 
@@ -19,15 +20,16 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads student profile from file and returns it;
     // throws IOException if an error occurs reading data from file
     public StudentProfile read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
-        return parseWorkRoom(jsonObject);
+        return parseStudentProfile(jsonObject);
     }
 
     // EFFECTS: reads source file as string and returns it
+    // NOTE: This method is directly adapted from JsonSerializationDemo
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
 
@@ -39,10 +41,11 @@ public class JsonReader {
     }
 
     // EFFECTS: parses student profile from JSON object and returns it
-    private StudentProfile parseWorkRoom(JSONObject jsonObject) {
+    private StudentProfile parseStudentProfile(JSONObject jsonObject) {
         String firstname = jsonObject.getString("first name");
         String lastname = jsonObject.getString("last name");
         int id = jsonObject.getInt("id");
+
 
         StudentProfile sp = new StudentProfile(firstname, lastname, id);
         addCourses(sp, jsonObject);

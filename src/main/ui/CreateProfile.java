@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 
 // making a  student profile application
+// NOTE: Methods in the class are referenced from the repositories TellerApp and JsonSerializationDemo
 public class CreateProfile {
     private static final String JSON_STORE = "./data/studentProfile.json";
     private StudentProfile student;
@@ -84,7 +85,7 @@ public class CreateProfile {
         System.out.println("\tam -> add intended major");
         System.out.println("\tcm -> change intended major");
         System.out.println("\tac -> add a completed first year course");
-        System.out.println("\tck -> check if I am eligible to apply for my intended major");
+        System.out.println("\tck -> check eligible to apply for the intended major");
         System.out.println("\ts -> save student profile to file");
         System.out.println("\tl -> load student profile from file");
         System.out.println("\tq -> quit");
@@ -93,7 +94,7 @@ public class CreateProfile {
 
     // EFFECTS: add an intended major to student profile
     private void doAddMajor() {
-
+        System.out.println("\nSelect from:");
         System.out.println("BIOL for Biology");
         System.out.println("CHEM for Chemistry");
         System.out.println("CPSC for Computer Science");
@@ -104,25 +105,25 @@ public class CreateProfile {
 
         if (selection.equals("BIOL")) {
             student.addMajor("Biology");
-            System.out.println("Biology has chosen to be your intended major\n");
+            System.out.println("\n Biology has chosen to be your intended major\n");
         } else if (selection.equals("CHEM")) {
             student.addMajor("Chemistry");
-            System.out.println("Chemistry has chosen to be your intended major\n");
+            System.out.println("\n Chemistry has chosen to be your intended major\n");
         } else if (selection.equals("CPSC")) {
             student.addMajor("Computer Science");
-            System.out.println("Computer Science has chosen to be your intended major\n");
+            System.out.println("\n Computer Science has chosen to be your intended major\n");
         } else if (selection.equals("MATH")) {
             student.addMajor("Mathematics");
-            System.out.println("Mathematics has chosen to be your intended major\n");
+            System.out.println("\n Mathematics has chosen to be your intended major\n");
         } else {
-            System.out.println("Major does not exist\n");
+            System.out.println("\n Major does not exist\n");
         }
     }
 
 
     // EFFECTS: Change a new intended major to student profile
     private void doChangeMajor() {
-        System.out.print("Select the major you want to change to from the following majors");
+        System.out.print("Select the major you want to change to from the following majors \n");
 
         System.out.println("BIOL for Biology");
         System.out.println("CHEM for Chemistry");
@@ -137,15 +138,15 @@ public class CreateProfile {
             System.out.println("\n Biology has chosen to be your new intended major\n");
         } else if (selection.equals("CHEM")) {
             student.addMajor("Chemistry");
-            System.out.println("Chemistry has chosen to be your new intended major\n");
+            System.out.println("\n Chemistry has chosen to be your new intended major\n");
         } else if (selection.equals("CPSC")) {
             student.addMajor("Computer Science");
-            System.out.println("Computer Science has chosen to be your new intended major\n");
+            System.out.println("\n Computer Science has chosen to be your new intended major\n");
         } else if (selection.equals("MATH")) {
             student.addMajor("Mathematics");
-            System.out.println("Mathematics has chosen to be your new intended major\n");
+            System.out.println("\n Mathematics has chosen to be your new intended major\n");
         } else {
-            System.out.println("Major does not exist\n");
+            System.out.println("\n Major does not exist\n");
         }
     }
 
@@ -153,13 +154,13 @@ public class CreateProfile {
     private void doAddCourse() {
         System.out.print("\n Enter the course name in the format of 4 letter subject code,");
         System.out.print("followed by a space, and then the 3 digit course number");
-        System.out.print("for example: MATH 100 \n");
+        System.out.print("\n For example: MATH 100 \n");
         String courseName = input.next();
         if (8 == courseName.length()) {
             student.addCourse(courseName);
-            System.out.print("\n" + courseName + " successfully added");
+            System.out.print("\n" + courseName + " successfully added\n");
         } else {
-            System.out.print("\n course name invalid");
+            System.out.print("\n course name invalid\n");
         }
 
     }
@@ -167,13 +168,13 @@ public class CreateProfile {
     // EFFECTS: check if the student is eligible to apply for their intended major
     private void doCheckEligibility() {
         if (student.getCourseList().isEmpty()) {
-            System.out.print("\n courses you have already completed need to be added first");
+            System.out.print("\n courses you have already completed need to be added first\n");
         } else if (student.getMajor() == null) {
-            System.out.print("\n an intended major need to be added first");
+            System.out.print("\n an intended major need to be added first\n");
         } else if (student.checkEligibility()) {
-            System.out.print("\n you are eligible to apply for you intended major this May");
+            System.out.print("\n you are eligible to apply for you intended major this May\n");
         } else {
-            System.out.print("\n you are not eligible to apply for you intended major this May");
+            System.out.print("\n you are not eligible to apply for you intended major this May\n");
         }
     }
 
@@ -184,9 +185,9 @@ public class CreateProfile {
             jsonWriter.open();
             jsonWriter.write(student);
             jsonWriter.close();
-            System.out.println("Saved " + student.getFirstName() + student.getLastName() + " to " + JSON_STORE);
+            System.out.println("Saved " + student.getFirstName() + student.getLastName() + " to " + JSON_STORE + "\n");
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + JSON_STORE);
+            System.out.println("Unable to write to file: " + JSON_STORE + "\n");
         }
     }
 
@@ -195,9 +196,10 @@ public class CreateProfile {
     private void loadStudentProfile() {
         try {
             student = jsonReader.read();
-            System.out.println("Loaded " + student.getFirstName() + student.getLastName() + " from " + JSON_STORE);
+            System.out.println("Loaded " + student.getFirstName() + " from " + JSON_STORE);
+            System.out.println("\n");
         } catch (IOException e) {
-            System.out.println("Unable to read from file: " + JSON_STORE);
+            System.out.println("Unable to read from file: " + JSON_STORE + "\n");
         }
     }
 

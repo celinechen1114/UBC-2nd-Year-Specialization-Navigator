@@ -38,7 +38,7 @@ public class JsonWriterTest extends JsonTest {
             assertEquals("first name", sp.getFirstName());
             assertEquals("last name", sp.getLastName());
             assertEquals(12345678, sp.getId());
-            assertNull( sp.getMajor());
+            assertNull(sp.getMajor());
             assertEquals(0, sp.getCourseList().size());
         } catch (IOException e) {
             fail("Exception should not have been thrown");

@@ -1,9 +1,6 @@
 {
-    "course list": [
-        {"course name": "CSPC 110"},
-        {"course name": "CPSC 110"}
-    ],
-    "intended major": "Computer Science",
+    "course list": [{"course name": "CPSC 110"}],
+    "intended major": "Biology",
     "last name": "Chen",
     "first name": "Celine",
     "id": 44176873

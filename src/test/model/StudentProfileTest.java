@@ -1,7 +1,9 @@
 package model;
 
 import org.junit.jupiter.api.Test;
+
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 //
@@ -39,7 +41,7 @@ class StudentProfileTest {
         sp.addMajor("Biology");
         assertEquals("Biology", sp.getMajor());
 
-        Major myMajor  = new Major (sp.getMajor());
+        Major myMajor = new Major(sp.getMajor());
         assertTrue(myMajor.prerequisiteHelper());
     }
 
@@ -50,7 +52,7 @@ class StudentProfileTest {
         sp.addMajor("Chemistry");
         assertEquals("Chemistry", sp.getMajor());
 
-        Major myMajor  = new Major (sp.getMajor());
+        Major myMajor = new Major(sp.getMajor());
         assertTrue(myMajor.prerequisiteHelper());
     }
 
@@ -60,7 +62,7 @@ class StudentProfileTest {
         sp.addMajor("Mathematics");
         assertEquals("Mathematics", sp.getMajor());
 
-        Major myMajor  = new Major (sp.getMajor());
+        Major myMajor = new Major(sp.getMajor());
         assertTrue(myMajor.prerequisiteHelper());
     }
 
@@ -69,7 +71,7 @@ class StudentProfileTest {
         StudentProfile sp = new StudentProfile("Celine", "Chen", 44176873);
         sp.addMajor("Law");
 
-        Major myMajor  = new Major (sp.getMajor());
+        Major myMajor = new Major(sp.getMajor());
         assertFalse(myMajor.prerequisiteHelper());
     }
 
@@ -85,7 +87,7 @@ class StudentProfileTest {
 
 
     @Test //check if the student is eligible to apply for the major given the courses the student have taken
-          // [true case]
+    // [true case]
     public void checkEligibilityTrueTest() {
         StudentProfile sp = new StudentProfile("Celine", "Chen", 44176873);
         sp.addMajor("Computer Science");

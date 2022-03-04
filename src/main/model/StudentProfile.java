@@ -58,7 +58,7 @@ public class StudentProfile implements Writable {
     public boolean checkEligibility() {
         List<String> myCourseNames = new ArrayList<String>();
         Major myMajor = new Major(major);
-        for (Course course:courseList) {
+        for (Course course : courseList) {
             String courseName = course.getName();
             myCourseNames.add(courseName);
         }
