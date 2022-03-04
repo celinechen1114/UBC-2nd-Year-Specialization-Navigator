@@ -55,8 +55,10 @@ public class JsonReader {
     // MODIFIES: sp
     // EFFECTS: parses major from JSON object and adds them to student profile
     private void addMajor(StudentProfile sp, JSONObject jsonObject) {
-        String majorName = jsonObject.getString("intended major");
-        sp.addMajor(majorName);
+        if (jsonObject.has("intended major")) {
+            String majorName = jsonObject.getString("intended major");
+            sp.addMajor(majorName);
+        }
     }
 
 
