@@ -60,7 +60,7 @@ public class Major implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("major name", majorName);
+        json.put("intended major", majorName);
         return json;
     }
 }

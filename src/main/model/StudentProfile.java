@@ -105,7 +105,7 @@ public class StudentProfile implements Writable {
         JSONObject json = new JSONObject();
         json.put("first name", firstName);
         json.put("last name", lastName);
-        json.put("student id", id);
+        json.put("id", id);
         json.put("course list", courseListToJson());
         json.put("intended major", major);
         return json;
