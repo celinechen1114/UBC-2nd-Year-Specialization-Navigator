@@ -1,6 +1,5 @@
 package persistence;
 
-// represents json test for Course json object
 import model.Course;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
