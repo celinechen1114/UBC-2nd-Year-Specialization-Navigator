@@ -6,7 +6,7 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
-public class Major implements Writable {
+public class Major {
     private  String majorName;             // the name of the major
     private  Course prerequisites;   // list of first-year prerequisites for the major
 
@@ -57,10 +57,4 @@ public class Major implements Writable {
         return prerequisites;
     }
 
-    @Override
-    public JSONObject toJson() {
-        JSONObject json = new JSONObject();
-        json.put("name", majorName);
-        return json;
-    }
 }

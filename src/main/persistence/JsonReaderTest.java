@@ -34,7 +34,7 @@ public class JsonReaderTest extends JsonTest {
             assertNull(sp.getMajor());
             assertEquals(0, sp.getCourseList().size());
         } catch (IOException e) {
-            //pass
+            fail("Couldn't read from file");
         }
     }
 
@@ -51,7 +51,7 @@ public class JsonReaderTest extends JsonTest {
             checkCourse("MATH 101", courseList.get(0));
             checkCourse("BIOL 112", courseList.get(1));
         } catch (IOException e) {
-            // pass
+            fail("Couldn't read from file");
         }
 
     }
