@@ -2,16 +2,13 @@ package persistence;
 
 import model.Course;
 import model.StudentProfile;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
 import java.io.IOException;
 import java.util.List;
 
-import static com.sun.tools.internal.ws.wsdl.parser.Util.fail;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class JsonReaderTest extends JsonTest {
 
