@@ -27,16 +27,23 @@
 ## User Stories
 *PHASE ONE*
 * As a user, I want to be able to add courses to my student profile
-* As a user, I want to pick an intended specialization and add it to my student profile
-* As a user, I want to change the intended specialization and update my student profile
-* As a user, I want to check if the courses I have added to my student profile meet the requirements
+* As a user, I want to be able to pick an intended specialization and add it to my student profile
+* As a user, I want to be able to change the intended specialization and update my student profile
+* As a user, I want to be able to check if the courses I have added to my student profile meet the requirements
   to apply for my intended specialization
 
 *PHASE TWO*
 * As a user, I want to be able to save my student profile to file
 * As a user, I want to be able to load my student profile to file
 
+*PHASE THREE*
+* include a panel in which all the courses (Xs) that have already been added to my student profile (Y) are displayed
+* include a button/menu item that can add courses (Xs) to student profile
+* include a button/menu item that can pick an intended specialization and add it to my student profile
+* (optional) include a button/menu item that can check the user's eligibility to apply to the intended specialization
+* As a user, I want to be able to load and save the state of the application
 
 ## References:
-TellerApp: https://github.students.cs.ubc.ca/CPSC210/TellerApp
+TellerApp: https://github.students.cs.ubc.ca/CPSC210/TellerApp 
+
 JsonSerializationDemo: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
