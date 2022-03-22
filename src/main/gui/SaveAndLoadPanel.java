@@ -1,9 +1,8 @@
-package GUI;
+package gui;
 
 import model.StudentProfile;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

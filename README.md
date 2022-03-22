@@ -43,6 +43,10 @@
 * (optional) include a button/menu item that can check the user's eligibility to apply to the intended specialization
 * As a user, I want to be able to load and save the state of the application
 
+*PHASE THREE ADDITIONAL*
+* As a user, I want to be able to update the student profile with a new first name, a new last name, and a new student id
+* !!! not yet tested the setter methods yet
+
 ## References:
 TellerApp: https://github.students.cs.ubc.ca/CPSC210/TellerApp 
 
