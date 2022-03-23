@@ -1,5 +1,6 @@
 package gui;
 
+import model.Course;
 import model.StudentProfile;
 
 import javax.swing.*;
@@ -7,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashSet;
+import java.util.List;
 
 // Represents a class of panels displaying different information in the student profile
 public class StudentProfilePanel extends JPanel implements ActionListener {
@@ -46,10 +49,11 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
 
 
     private String courseListDisplayHelper() {
+
         if (sp.getCourseList().isEmpty()) {
             return "courses needed to be added first";
         } else {
-            return String.valueOf(sp.getCourseList());
+            return sp.makeMyCourseList();
         }
     }
 
@@ -98,10 +102,9 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
             // REQUIRES the course name input is correctly entered
             sp.addCourse(myCourse.getText());
             f2.dispose();
-            courses = new JLabel("Courses Completed: " + courseListDisplayHelper());
+            courses.setText("Courses Completed: " + courseListDisplayHelper());
         }
     }
-
 
 
     private void addCourseFrame() {

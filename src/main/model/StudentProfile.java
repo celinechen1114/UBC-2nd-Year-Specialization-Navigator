@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 // Represents a Degree Navigator for first year UBC Science students having a student id, student first name,
@@ -17,6 +18,9 @@ public class StudentProfile implements Writable {
     private int id;                        // student id
     private List<Course> courseList;       // list of 1st year courses the student have taken
     private String major;                   // the intended major the student is planning to apply
+
+    // Added in Phase three
+    String myCourseList;      //courseList printed in String form
 
 
 
@@ -73,6 +77,18 @@ public class StudentProfile implements Writable {
         }
     }
 
+
+    //EFFECTS:
+    public String makeMyCourseList() {      // added in phase 3
+        String myCourseList = new String();
+
+        for (Course c : courseList) {
+            myCourseList += c.getName() + "";
+        }
+
+        return myCourseList;
+    }
+
     // getters
     public String getFirstName() {
         return firstName;
@@ -93,6 +109,7 @@ public class StudentProfile implements Writable {
     public String getMajor() {
         return this.major;
     }
+
 
     // setters
     public void setFirstName(String n) {
