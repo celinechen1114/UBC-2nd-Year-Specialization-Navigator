@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 //
 // Bibliography: https://introcs.cs.princeton.edu/java/15inout/GUI.java.html
-public class Main extends JFrame implements ActionListener {
+public class Main implements ActionListener {
 
     private static JButton BIOL;
     private static JButton CHEM;
@@ -17,16 +17,15 @@ public class Main extends JFrame implements ActionListener {
     private static JButton MATH;
 
     private StudentProfile student;
+    private JButton addCourses;
+
     private JLabel major;
     private JPanel panel;
     private JPanel studentProfilePanel;
-
+    private JFrame f1;
 
 
     public Main() {
-
-        // the frame
-        super("Student Profile");
 
         // default student & display studentProfilePanel with text
         studentProfileSetUp();
@@ -45,6 +44,10 @@ public class Main extends JFrame implements ActionListener {
         panel.add(CHEM);
         panel.add(CPSC);
         panel.add(MATH);
+
+
+        // the frame
+        f1 = new JFrame("Student Profile");
 
         //set up the frame and display it
         frameSetUP();
@@ -72,27 +75,27 @@ public class Main extends JFrame implements ActionListener {
     // effects:  location of frame is set so frame is centred on desktop
     private void centreOnScreen() {
         Dimension scrn = Toolkit.getDefaultToolkit().getScreenSize();
-        setLocation((scrn.width - getWidth()) / 2, (scrn.height - getHeight()) / 2);
+        f1.setLocation((scrn.width - f1.getWidth()) / 2, (scrn.height - f1.getHeight()) / 2);
     }
 
     // Effects: set up the frame and display it
     private void frameSetUP() {
-        add(panel, BorderLayout.CENTER);
-        add(studentProfilePanel, BorderLayout.NORTH);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        pack();
+        f1.add(panel, BorderLayout.CENTER);
+        f1.add(studentProfilePanel, BorderLayout.NORTH);
+        f1.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        f1.pack();
         centreOnScreen();
-        setVisible(true);
+        f1.setVisible(true);
     }
 
 
     private void studentProfileSetUp() {
-        student = new StudentProfile("your first name", "your last name", 12345678);
+        student = new StudentProfile("Celine", "Chen", 44176873);
         studentProfilePanel = new StudentProfilePanel(student);
     }
 
 
-    public void majorButtonsSetUP() {
+    private void majorButtonsSetUP() {
         BIOL = new JButton("BIOL");
         BIOL.setActionCommand("BIOL");
         BIOL.addActionListener(this);

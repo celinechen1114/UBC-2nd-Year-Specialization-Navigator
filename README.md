@@ -48,6 +48,6 @@
 * !!! not yet tested the setter methods yet
 
 ## References:
-TellerApp: https://github.students.cs.ubc.ca/CPSC210/TellerApp 
-
+TellerApp: https://github.students.cs.ubc.ca/CPSC210/TellerApp
+Bibliography: https://introcs.cs.princeton.edu/java/15inout/GUI.java.html
 JsonSerializationDemo: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
