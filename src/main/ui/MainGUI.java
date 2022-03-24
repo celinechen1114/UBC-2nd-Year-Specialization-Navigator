@@ -21,6 +21,8 @@ public class MainGUI implements ActionListener {
     private JLabel major;
     private JPanel panel;
     private JPanel studentProfilePanel;
+    private JPanel saveAndLoadPanel;
+
     private JFrame f1;
 
 
@@ -43,6 +45,9 @@ public class MainGUI implements ActionListener {
         panel.add(CHEM);
         panel.add(CPSC);
         panel.add(MATH);
+
+        // set up save and load panel
+        saveAndLoadPanelSetUp();
 
         // set up the default main menu frame and display it
         f1 = new JFrame("Student Profile");
@@ -82,6 +87,7 @@ public class MainGUI implements ActionListener {
     private void frameSetUP() {
         f1.add(panel, BorderLayout.CENTER);
         f1.add(studentProfilePanel, BorderLayout.NORTH);
+        f1.add(saveAndLoadPanel, BorderLayout.AFTER_LAST_LINE);
         f1.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         f1.pack();
         centreOnScreen();
@@ -95,6 +101,9 @@ public class MainGUI implements ActionListener {
         studentProfilePanel = new StudentProfilePanel(student);
     }
 
+    private void saveAndLoadPanelSetUp() {
+        saveAndLoadPanel = new SaveAndLoadPanel(student);
+    }
 
     //
     private void majorButtonsSetUP() {
@@ -115,7 +124,9 @@ public class MainGUI implements ActionListener {
         MATH.addActionListener(this);
     }
 
-
+    public void setStudent(StudentProfile sp) {
+        this.student = sp;
+    }
     // create one Frame
     public static void main(String[] args) {
         new MainGUI();

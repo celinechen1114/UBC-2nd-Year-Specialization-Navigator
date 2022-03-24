@@ -1,6 +1,7 @@
 package ui;
 
 import model.StudentProfile;
+import org.json.JSONObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,8 +54,7 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
     }
 
 
-    private String courseListDisplayHelper() {
-
+    public String courseListDisplayHelper() {
         if (sp.getCourseList().isEmpty()) {
             return "courses needed to be added first";
         } else {
@@ -62,42 +62,42 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
         }
     }
 
-    private void makeFirstNamePanel() {
+    public void makeFirstNamePanel() {
         setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 50));
         setLayout(new GridLayout(1, 2));
         add(firstName);
 
     }
 
-    private void makeLastNamePanel() {
+    public void makeLastNamePanel() {
         setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 50));
         setLayout(new GridLayout(0, 1));
         add(lastName);
 
     }
 
-    private void makeIdPanel() {
+    public void makeIdPanel() {
         setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 50));
         setLayout(new GridLayout(0, 1));
         add(id);
 
     }
 
-    private void makeCoursesPanel() {
+    public void makeCoursesPanel() {
         setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
         setLayout(new GridLayout(0, 1));
         add(courses);
 
     }
 
-    private void makeAddCourseButton() {
+    public void makeAddCourseButton() {
         addCourses = new JButton("Click here to add a completed course to your course list");
         addCourses.setActionCommand("AddCourse");
         addCourses.addActionListener(this);
         add(addCourses);
     }
 
-    private void makeCheckEligibilityButton() {
+    public void makeCheckEligibilityButton() {
         checkEligibility = new JButton("Click here to check the eligibility to apply for your intended major");
         checkEligibility.setActionCommand("checkEligibility");
         checkEligibility.addActionListener(this);
@@ -114,7 +114,7 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
             // REQUIRES the course name input is correctly entered
             sp.addCourse(myCourse.getText());
             f2.dispose();
-            courses.setText("Courses Completed: " + courseListDisplayHelper());
+            updateCoursesLabelMessage(sp);
         } else if (e.getActionCommand().equals("checkEligibility")) {
             addEligibilityFrame();
         } else if (e.getActionCommand().equals("OK")) {
@@ -123,7 +123,7 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
     }
 
 
-    private void addCourseFrame() {
+    public void addCourseFrame() {
         JButton button = new JButton("add");
         button.setActionCommand("add");
         button.addActionListener(this);
@@ -151,7 +151,12 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
         f2.setVisible(true);
     }
 
-    private void addEligibilityFrame() {
+    public void updateCoursesLabelMessage(StudentProfile sp) {
+        this.sp = sp;
+        courses.setText("Courses Completed: " + courseListDisplayHelper());
+    }
+
+    public void addEligibilityFrame() {
         JButton button = new JButton("OK");
         button.setActionCommand("OK");
         button.addActionListener(this);
@@ -176,7 +181,7 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
         f3.setVisible(true);
     }
 
-    private String doCheckEligibility() {
+    public String doCheckEligibility() {
         if (sp.getCourseList().isEmpty()) {
             return "\n courses you have already completed need to be added first\n";
         } else if (sp.getMajor() == null) {
