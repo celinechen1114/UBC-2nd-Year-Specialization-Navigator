@@ -1,4 +1,4 @@
-package gui;
+package guiExamples;
 
 // SecondFrame.java
 

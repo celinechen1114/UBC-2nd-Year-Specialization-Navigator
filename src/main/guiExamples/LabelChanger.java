@@ -1,4 +1,4 @@
-package gui;
+package guiExamples;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

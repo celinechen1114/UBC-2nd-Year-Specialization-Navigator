@@ -1,4 +1,4 @@
-package gui;
+package ui;
 
 import model.StudentProfile;
 
@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 //
 // Bibliography: https://introcs.cs.princeton.edu/java/15inout/GUI.java.html
-public class Main implements ActionListener {
+public class MainGUI implements ActionListener {
 
     private static JButton BIOL;
     private static JButton CHEM;
@@ -17,7 +17,6 @@ public class Main implements ActionListener {
     private static JButton MATH;
 
     private StudentProfile student;
-    private JButton addCourses;
 
     private JLabel major;
     private JPanel panel;
@@ -25,18 +24,18 @@ public class Main implements ActionListener {
     private JFrame f1;
 
 
-    public Main() {
+    public MainGUI() {
 
-        // default student & display studentProfilePanel with text
+        // instantiate default student & display studentProfilePanel with text
         studentProfileSetUp();
 
-        // the clickable buttons
+        // set up the major options button
         majorButtonsSetUP();
 
-        // the label
+        // instantiate default label for when intended major hasn't chosen yet
         major = new JLabel("No intended major chosen yet, please select from the following options");
 
-        // the panel with the button and text
+        // set up the panel with the clickable major option buttons and text
         panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
         panel.add(major);
@@ -45,40 +44,41 @@ public class Main implements ActionListener {
         panel.add(CPSC);
         panel.add(MATH);
 
-
-        // the frame
+        // set up the default main menu frame and display it
         f1 = new JFrame("Student Profile");
-
-        //set up the frame and display it
         frameSetUP();
 
     }
 
 
-    @Override // process the button clicks
+    @Override
+    // process the button clicks
     //This is the method that is called when JButton CHEM, BIOL, CPSC or MATH is clicked
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("BIOL")) {
-            major.setText("Biology has chosen to be your new intended major");
+            student.addMajor("Biology");
+            major.setText("Biology has chosen to be your intended major");
         } else if (e.getActionCommand().equals("CHEM")) {
-            major.setText("Chemistry has chosen to be your new intended major");
+            student.addMajor("Chemistry");
+            major.setText("Chemistry has chosen to be your intended major");
         } else if (e.getActionCommand().equals("CPSC")) {
-            major.setText("Computer Science has chosen to be your new intended major");
+            student.addMajor("Computer Science");
+            major.setText("Computer Science has chosen to be your intended major");
         } else if (e.getActionCommand().equals("MATH")) {
-            major.setText("Mathematics has chosen to be your new intended major");
+            student.addMajor("Mathematics");
+            major.setText("Mathematics has chosen to be your intended major");
         }
     }
 
-    // NOTE: following method is exactly adapted from SpaceInvader
-    // Centres frame on desktop
-    // modifies: this
-    // effects:  location of frame is set so frame is centred on desktop
+    // NOTE: following method is adapted from SpaceInvader
+    // MODIFIES: this
+    // EFFECTS: location of frame is set so frame is centred on desktop
     private void centreOnScreen() {
         Dimension scrn = Toolkit.getDefaultToolkit().getScreenSize();
         f1.setLocation((scrn.width - f1.getWidth()) / 2, (scrn.height - f1.getHeight()) / 2);
     }
 
-    // Effects: set up the frame and display it
+    // EFFECTS: set up the main menu frame and display it
     private void frameSetUP() {
         f1.add(panel, BorderLayout.CENTER);
         f1.add(studentProfilePanel, BorderLayout.NORTH);
@@ -89,12 +89,14 @@ public class Main implements ActionListener {
     }
 
 
+    // default student profile setup
     private void studentProfileSetUp() {
         student = new StudentProfile("Celine", "Chen", 44176873);
         studentProfilePanel = new StudentProfilePanel(student);
     }
 
 
+    //
     private void majorButtonsSetUP() {
         BIOL = new JButton("BIOL");
         BIOL.setActionCommand("BIOL");
@@ -113,10 +115,9 @@ public class Main implements ActionListener {
         MATH.addActionListener(this);
     }
 
+
     // create one Frame
     public static void main(String[] args) {
-        new Main();
+        new MainGUI();
     }
-
-
 }

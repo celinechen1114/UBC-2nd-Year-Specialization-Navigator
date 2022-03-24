@@ -1,30 +1,33 @@
-package gui;
+package ui;
 
-import model.Course;
 import model.StudentProfile;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashSet;
-import java.util.List;
 
 // Represents a class of panels displaying different information in the student profile
 public class StudentProfilePanel extends JPanel implements ActionListener {
 
     private StudentProfile sp;
 
+    // default frame
     private JLabel firstName;
     private JLabel lastName;
     private JLabel id;
     private JLabel courses;
 
-    private JButton addCourses;
+    private JButton addCourses;            // allows user to add a course to course list
+    private JButton checkEligibility;      // checks if the user is eligible to apply to the chosen intended major
 
-    private JTextField myCourse;
+    // pop up frame for the addCourses button
     private JFrame f2;
+    private JTextField myCourse;
+
+    // pop up frame for the checkEligibility button
+    private JFrame f3;
+
 
     // Effects: Constructs a student profile:
     //          sets the background colour and draws/initiates the initial labels;
@@ -34,17 +37,19 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
         setLayout(new GridLayout(3, 1));
         setBackground(new Color(100, 210, 200));
 
-        // make defaulted version of student profile set up message
+        // instantiate defaulted version of student profile & displayed messages
         firstName = new JLabel("First Name: " + sp.getFirstName());
         lastName = new JLabel("Last Name: " + sp.getLastName());
         id = new JLabel("Student ID: " + sp.getId());
         courses = new JLabel("Courses Completed: " + courseListDisplayHelper());
 
+        // make the student profile panel & add the clickable buttons
         makeFirstNamePanel();
         makeLastNamePanel();
-        makeIdField();
-        coursesField();
+        makeIdPanel();
+        makeCoursesPanel();
         makeAddCourseButton();
+        makeCheckEligibilityButton();
     }
 
 
@@ -71,14 +76,14 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
 
     }
 
-    private void makeIdField() {
+    private void makeIdPanel() {
         setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 50));
         setLayout(new GridLayout(0, 1));
         add(id);
 
     }
 
-    private void coursesField() {
+    private void makeCoursesPanel() {
         setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
         setLayout(new GridLayout(0, 1));
         add(courses);
@@ -92,6 +97,13 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
         add(addCourses);
     }
 
+    private void makeCheckEligibilityButton() {
+        checkEligibility = new JButton("Click here to check the eligibility to apply for your intended major");
+        checkEligibility.setActionCommand("checkEligibility");
+        checkEligibility.addActionListener(this);
+        add(checkEligibility);
+    }
+
     @Override
     // process the button clicks
     //This is the method that is called when JButton CHEM, BIOL, CPSC or MATH is clicked
@@ -103,6 +115,10 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
             sp.addCourse(myCourse.getText());
             f2.dispose();
             courses.setText("Courses Completed: " + courseListDisplayHelper());
+        } else if (e.getActionCommand().equals("checkEligibility")) {
+            addEligibilityFrame();
+        } else if (e.getActionCommand().equals("OK")) {
+            f3.dispose();
         }
     }
 
@@ -128,11 +144,47 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
         panel.add(button);
 
         // make a new Frame
-        f2 = new JFrame("Add your completed course");
+        f2 = new JFrame("Add Your Completed UBC Course");
         f2.add(panel, BorderLayout.CENTER);
         f2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f2.setTitle("GUI");
         f2.pack();
         f2.setVisible(true);
+    }
+
+    private void addEligibilityFrame() {
+        JButton button = new JButton("OK");
+        button.setActionCommand("OK");
+        button.addActionListener(this);
+
+        // make a label indicating if users is eligible to apply for the choose intended major or not
+        JLabel eligibilityStatus = new JLabel();
+        eligibilityStatus.setText(doCheckEligibility());
+
+
+        // make a new panel with text, text field, and button
+        JPanel panel = new JPanel();
+        panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
+        panel.setLayout(new GridLayout(0, 1));
+        panel.add(eligibilityStatus);
+        panel.add(button);
+
+        // make a new Frame
+        f3 = new JFrame("Eligibility To Apply For The Intended Major");
+        f3.add(panel, BorderLayout.CENTER);
+        f3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f3.pack();
+        f3.setVisible(true);
+    }
+
+    private String doCheckEligibility() {
+        if (sp.getCourseList().isEmpty()) {
+            return "\n courses you have already completed need to be added first\n";
+        } else if (sp.getMajor() == null) {
+            return "\n an intended major need to be added first\n";
+        } else if (sp.checkEligibility()) {
+            return "\n you are eligible to apply for you intended major this May\n";
+        } else {
+            return "\n you are not eligible to apply for you intended major this May\n";
+        }
     }
 }
