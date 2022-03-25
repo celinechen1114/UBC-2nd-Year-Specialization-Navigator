@@ -299,7 +299,7 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
         if (sp.getMajor() == null) {
             major.setText("2) No intended major chosen yet, please SELECT from the following options");
         } else {
-            major.setText("2)" + sp.getMajor() + " has chosen to be your intended major~ ");
+            major.setText(sp.getMajor() + " has been chosen to be your intended major~ ");
         }
     }
 
