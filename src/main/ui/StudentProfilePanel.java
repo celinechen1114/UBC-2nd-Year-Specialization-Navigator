@@ -15,8 +15,7 @@ import java.io.IOException;
 public class StudentProfilePanel extends JPanel implements ActionListener {
 
     private static String pathToMajorMessage = "./data/IMG_4536.JPG";
-    private static String pathToCongratsMessage = "./data/IMG_4526.JPG";
-
+    private static String pathToCongratsMessage = "./data/IMG_4523.JPG";
 
     private StudentProfile sp;
 
@@ -37,7 +36,7 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
     private JFrame f3;
 
 
-    // set up MajorPanel and the clickable buttons
+    // MajorPanel and the clickable buttons
     private JLabel major;
     private static JButton BIOL;
     private static JButton CHEM;
@@ -70,14 +69,6 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
         makeMajorPanel();
     }
 
-
-    public String courseListDisplayHelper() {
-        if (sp.getCourseList().isEmpty()) {
-            return "courses needed to be added first";
-        } else {
-            return sp.makeMyCourseList();
-        }
-    }
 
     public void makeFirstNamePanel() {
         setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 50));
@@ -121,36 +112,10 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
         add(checkEligibility);
     }
 
-    @Override
-    // process the button clicks
-    //This is the method that is called when JButton CHEM, BIOL, CPSC or MATH is clicked
-    public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("AddCourse")) {
-            addCourseFrame();
-        } else if (e.getActionCommand().equals("add")) {
-            // REQUIRES the course name input is correctly entered
-            sp.addCourse(myCourse.getText());
-            f2.dispose();
-            updateCoursesLabelMessage(sp);
-        } else if (e.getActionCommand().equals("checkEligibility")) {
-            addEligibilityFrame();
-        } else if (e.getActionCommand().equals("OK")) {
-            f3.dispose();
-        } else if (e.getActionCommand().equals("BIOL")) {
-            sp.addMajor("Biology");
-            major.setText("Biology has chosen to be your intended major");
-        } else if (e.getActionCommand().equals("CHEM")) {
-            sp.addMajor("Chemistry");
-            major.setText("Chemistry has chosen to be your intended major");
-        } else if (e.getActionCommand().equals("CPSC")) {
-            sp.addMajor("Computer Science");
-            major.setText("Computer Science has chosen to be your intended major");
-        } else if (e.getActionCommand().equals("MATH")) {
-            sp.addMajor("Mathematics");
-            major.setText("Mathematics has chosen to be your intended major");
-        }
-    }
 
+    /*
+     methods related to add Courses
+      */
 
     public void addCourseFrame() {
         JButton button = new JButton("add");
@@ -180,12 +145,23 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
         f2.setVisible(true);
     }
 
-    // !!!! this  is the unsure method!
+    public String courseListDisplayHelper() {
+        if (sp.getCourseList().isEmpty()) {
+            return "courses needed to be added first";
+        } else {
+            return sp.makeMyCourseList();
+        }
+    }
+
+    // Effects: updating/displaying courses completed of the given student
     public void updateCoursesLabelMessage(StudentProfile sp) {
         this.sp = sp;
         courses.setText("Courses Completed: " + courseListDisplayHelper());
     }
 
+    /*
+    methods related to check Eligibility
+     */
 
     public void addEligibilityFrame() {
         JButton button = new JButton("OK");
@@ -194,15 +170,17 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
 
         // make a label indicating if users is eligible to apply for the choose intended major or not
         JLabel eligibilityStatus = new JLabel();
-        eligibilityStatus.setText(doCheckEligibility());
-
+        eligibilityStatus.setText(doCheckEligibilityMessage());
 
         // make a new panel with text, text field, and button
         JPanel panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
         panel.setLayout(new GridLayout(0, 1));
+
+        if (sp.checkEligibility()) {
+            panel.add(makeImage(pathToCongratsMessage));
+        }
         panel.add(eligibilityStatus);
-        panel.add(makeImage(pathToCongratsMessage));
         panel.add(button);
 
         // make a new Frame
@@ -211,14 +189,10 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
         f3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f3.pack();
         f3.setVisible(true);
-
     }
 
-    public StudentProfile getSp() {
-        return sp;
-    }
 
-    public String doCheckEligibility() {
+    public String doCheckEligibilityMessage() {
         if (sp.getCourseList().isEmpty()) {
             return "\n courses you have already completed need to be added first\n";
         } else if (sp.getMajor() == null) {
@@ -228,6 +202,31 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
         } else {
             return "\n you are not eligible to apply for you intended major this May\n";
         }
+    }
+
+      /*
+    methods related to creating the major panel and buttons
+     */
+
+    public void makeMajorPanel() {
+
+        setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 50));
+        setLayout(new GridLayout(0, 1));
+
+        // spacing label
+        JLabel space = new JLabel("          ");
+
+        // instantiate default label for when intended major hasn't chosen yet
+        major = new JLabel("No intended major chosen yet, please select from the following options");
+        majorButtonsSetUP();
+
+        add(space);
+        add(makeImage(pathToMajorMessage));
+        add(major);
+        add(BIOL);
+        add(CHEM);
+        add(CPSC);
+        add(MATH);
     }
 
     private void majorButtonsSetUP() {
@@ -248,39 +247,6 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
         MATH.addActionListener(this);
     }
 
-    // Major Buttons below
-
-    public void makeMajorPanel() {
-
-        setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 50));
-        setLayout(new GridLayout(0, 1));
-
-        // spacing label
-        JLabel space = new JLabel("          ");
-
-        // instantiate default label for when intended major hasn't chosen yet
-        major = new JLabel("No intended major chosen yet, please select from the following options");
-
-
-        majorButtonsSetUP();
-
-        add(space);
-        add(makeImage(pathToMajorMessage));
-        add(major);
-        add(BIOL);
-        add(CHEM);
-        add(CPSC);
-        add(MATH);
-    }
-
-
-    public void updateMajorLabelMessage(StudentProfile sp) {
-        if (sp.getMajor() == null) {
-            major.setText("No intended major chosen yet, please select from the following options");
-        } else {
-            major.setText(sp.getMajor() + " has chosen to be your intended major");
-        }
-    }
 
     private JLabel makeImage(String pathToFile) {
 
@@ -291,8 +257,49 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
             e.printStackTrace();
         }
         ImageIcon icon = new ImageIcon(img);
-        JLabel myLabel = new JLabel(icon);
-        return myLabel;
+        return new JLabel(icon);
     }
 
+    public void updateMajorLabelMessage(StudentProfile sp) {
+        if (sp.getMajor() == null) {
+            major.setText("No intended major chosen yet, please select from the following options");
+        } else {
+            major.setText(sp.getMajor() + " has chosen to be your intended major");
+        }
+    }
+
+    //getter methods
+    public StudentProfile getSp() {
+        return sp;
+    }
+
+    @Override
+    // process the button clicks
+    //This is the method that is called when JButton CHEM, BIOL, CPSC or MATH is clicked
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("AddCourse")) {
+            addCourseFrame();
+        } else if (e.getActionCommand().equals("add")) {
+            // REQUIRES the course name input is correctly entered
+            sp.addCourse(myCourse.getText());
+            f2.dispose();
+            updateCoursesLabelMessage(sp);
+        } else if (e.getActionCommand().equals("checkEligibility")) {
+            addEligibilityFrame();
+        } else if (e.getActionCommand().equals("OK")) {
+            f3.dispose();
+        } else if (e.getActionCommand().equals("BIOL")) {
+            sp.addMajor("Biology");
+            major.setText("Biology has chosen to be your intended major");
+        } else if (e.getActionCommand().equals("CHEM")) {
+            sp.addMajor("Chemistry");
+            major.setText("Chemistry has chosen to be your intended major");
+        } else if (e.getActionCommand().equals("CPSC")) {
+            sp.addMajor("Computer Science");
+            major.setText("Computer Science has chosen to be your intended major");
+        } else if (e.getActionCommand().equals("MATH")) {
+            sp.addMajor("Mathematics");
+            major.setText("Mathematics has chosen to be your intended major");
+        }
+    }
 }
