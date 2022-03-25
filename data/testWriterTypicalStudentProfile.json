@@ -1,0 +1,10 @@
+{
+    "course list": [
+        {"course name": "MATH 101"},
+        {"course name": "BIOL 112"}
+    ],
+    "intended major": "Biology",
+    "last name": "last name",
+    "first name": "first name",
+    "id": 12345678
+}
