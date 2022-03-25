@@ -23,10 +23,13 @@ public class Major {
         prerequisiteHelper();
     }
 
+    // REQUIRES: major name can not be null
     // EFFECTS: returns true if the major exists and assign corresponding prerequisite to the given major name
     //          returns false if the major does not exist
     public boolean prerequisiteHelper() {
-        if (majorName.equals("Biology")) {
+        if (majorName == null) {
+            return false;
+        } else if (majorName.equals("Biology")) {
             prerequisites = BIOLOGY;
             return true;
         } else if (majorName.equals("Chemistry")) {

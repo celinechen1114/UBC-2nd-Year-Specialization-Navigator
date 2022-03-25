@@ -46,6 +46,12 @@
 
 
 ## References:
-TellerApp: https://github.students.cs.ubc.ca/CPSC210/TellerApp
-Bibliography: https://introcs.cs.princeton.edu/java/15inout/GUI.java.html
-JsonSerializationDemo: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+* TellerApp: https://github.students.cs.ubc.ca/CPSC210/TellerApp
+* Bibliography: https://introcs.cs.princeton.edu/java/15inout/GUI.java.html
+* JsonSerializationDemo: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+* GUI: https://introcs.cs.princeton.edu/java/15inout/GUI.java.html
+* Space Invader https://github.students.cs.ubc.ca/CPSC210/B02-SpaceInvadersBase
+* 
+## Bibliography:
+* IMG_4527.PNG adopted from https://citystudiovancouver.com/partners/ubc/
+* rest of the images used in the program are taken/made by Celine Chen

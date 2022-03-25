@@ -69,7 +69,6 @@ public class StudentProfile implements Writable {
 
         Course prerequisiteCourse = myMajor.getPrerequisites();
         String namePrerequisiteCourse = prerequisiteCourse.getName();
-
         return myCourseNames.contains(namePrerequisiteCourse);
     }
 
@@ -79,7 +78,7 @@ public class StudentProfile implements Writable {
         String myCourseList = new String();
 
         for (Course c : courseList) {
-            myCourseList += c.getName() + " ";
+            myCourseList += c.getName() + "  ";
         }
 
         return myCourseList;

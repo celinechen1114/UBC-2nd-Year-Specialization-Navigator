@@ -1,6 +1,12 @@
 {
-    "course list": [{"course name": "CPSC 110"}],
-    "intended major": "Computer Science",
+    "course list": [
+        {"course name": "biol 121"},
+        {"course name": "biol 140"},
+        {"course name": "chem 121"},
+        {"course name": "dsci 100"},
+        {"course name": "biol 230"}
+    ],
+    "intended major": "Biology",
     "last name": "Chen",
     "first name": "Celine",
     "id": 44176873

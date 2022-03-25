@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+// Represents a class that saves information input in the student profile panel
+// and load
 public class SaveAndLoadPanel extends JPanel implements ActionListener {
 
     private static final String JSON_STORE = "./data/studentProfile.json";
@@ -25,19 +27,15 @@ public class SaveAndLoadPanel extends JPanel implements ActionListener {
 
     private JFrame f4;
 
-
-    private JPanel panel;
-
     // Effects: Constructs a student profile:
     //          sets the background colour and draws the initial labels;
     //          updates this with courses and major added
     public SaveAndLoadPanel(StudentProfilePanel spp) {
-
         this.spp = spp;
         this.sp = spp.getSp();
 
         setLayout(new GridLayout(3, 1));
-        setBackground(new Color(240, 240, 250));
+        setBackground(new Color(230, 230, 250));
         setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 50));
 
         // the clickable button
@@ -53,7 +51,6 @@ public class SaveAndLoadPanel extends JPanel implements ActionListener {
 
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
-
     }
 
     // EFFECTS: saves the student profile to file
@@ -79,12 +76,12 @@ public class SaveAndLoadPanel extends JPanel implements ActionListener {
         }
     }
 
+    //EFFECTS: Create a pop-up frame with indicating the file is successfully saved
     public void addSaveMessageFrame() {
         JButton button = new JButton("OK");
         button.setActionCommand("OK");
         button.addActionListener(this);
 
-        // make a label indicating if users is eligible to apply for the chosen intended major or not
         JLabel message = new JLabel("File successfully saved");
 
         // make a new panel with text, text field, and button
@@ -102,12 +99,12 @@ public class SaveAndLoadPanel extends JPanel implements ActionListener {
         f4.setVisible(true);
     }
 
+    //EFFECTS: Create a pop-up frame with indicating the file is successfully loaded
     public void addLoadMessageFrame() {
         JButton button = new JButton("OK");
-        button.setActionCommand("OK");
+        button.setActionCommand("OK for Load");
         button.addActionListener(this);
 
-        // make a label indicating if users is eligible to apply for the chosen intended major or not
         JLabel message = new JLabel("File successfully loaded");
 
         // make a new panel with text, text field, and button
@@ -126,6 +123,10 @@ public class SaveAndLoadPanel extends JPanel implements ActionListener {
     }
 
 
+    // EFFECTS: when save button is clicked, save current student profile(sp) to file, and load pop-up frame
+    //          when load button is clicked, load the sp on file,
+    //          load pop-up frame and display the loaded sp after the "OK" button is clicked
+    //          and automatically close the pop-frame when "OK' button is clicked
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("save")) {
@@ -136,8 +137,10 @@ public class SaveAndLoadPanel extends JPanel implements ActionListener {
             addLoadMessageFrame();
         } else if (e.getActionCommand().equals("OK")) {
             f4.dispose();
+        } else if (e.getActionCommand().equals("OK for Load")) {
             spp.updateCoursesLabelMessage(this.sp);
             spp.updateMajorLabelMessage(this.sp);
+            f4.dispose();
         }
     }
 }
