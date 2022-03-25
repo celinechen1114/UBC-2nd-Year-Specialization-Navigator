@@ -14,6 +14,8 @@ import java.io.IOException;
 public class SaveAndLoadPanel extends JPanel implements ActionListener {
 
     private static final String JSON_STORE = "./data/studentProfile.json";
+
+    private StudentProfilePanel spp;
     private StudentProfile sp;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
@@ -23,15 +25,19 @@ public class SaveAndLoadPanel extends JPanel implements ActionListener {
 
     private JFrame f4;
 
+
+    private JPanel panel;
+
     // Effects: Constructs a student profile:
     //          sets the background colour and draws the initial labels;
     //          updates this with courses and major added
-    public SaveAndLoadPanel(StudentProfile sp) {
+    public SaveAndLoadPanel(StudentProfilePanel spp) {
 
-        this.sp = sp;
+        this.spp = spp;
+        this.sp = spp.getSp();
 
         setLayout(new GridLayout(3, 1));
-        setBackground(new Color(200, 210, 200));
+        setBackground(new Color(240, 240, 250));
         setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 50));
 
         // the clickable button
@@ -130,7 +136,8 @@ public class SaveAndLoadPanel extends JPanel implements ActionListener {
             addLoadMessageFrame();
         } else if (e.getActionCommand().equals("OK")) {
             f4.dispose();
-            StudentProfilePanel.updateCoursesLabelMessage(this.sp); // I don't know why I can't make this call
+            spp.updateCoursesLabelMessage(this.sp);
+            spp.updateMajorLabelMessage(this.sp);
         }
     }
 }

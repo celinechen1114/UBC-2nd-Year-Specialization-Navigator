@@ -1,15 +1,22 @@
 package ui;
 
 import model.StudentProfile;
-import org.json.JSONObject;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 // Represents a class of panels displaying different information in the student profile
 public class StudentProfilePanel extends JPanel implements ActionListener {
+
+    private static String pathToMajorMessage = "./data/IMG_4536.JPG";
+    private static String pathToCongratsMessage = "./data/IMG_4526.JPG";
+
 
     private StudentProfile sp;
 
@@ -30,13 +37,21 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
     private JFrame f3;
 
 
+    // set up MajorPanel and the clickable buttons
+    private JLabel major;
+    private static JButton BIOL;
+    private static JButton CHEM;
+    private static JButton CPSC;
+    private static JButton MATH;
+
+
     // Effects: Constructs a student profile:
     //          sets the background colour and draws/initiates the initial labels;
     //          updates this with courses and major added
     public StudentProfilePanel(StudentProfile sp) {
         this.sp = sp;
-        setLayout(new GridLayout(3, 1));
-        setBackground(new Color(100, 210, 200));
+        setLayout(new GridLayout(5, 1));
+        setBackground(new Color(150, 240, 240));
 
         // instantiate defaulted version of student profile & displayed messages
         firstName = new JLabel("First Name: " + sp.getFirstName());
@@ -51,6 +66,8 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
         makeCoursesPanel();
         makeAddCourseButton();
         makeCheckEligibilityButton();
+
+        makeMajorPanel();
     }
 
 
@@ -64,7 +81,7 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
 
     public void makeFirstNamePanel() {
         setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 50));
-        setLayout(new GridLayout(1, 2));
+        setLayout(new GridLayout(0, 2));
         add(firstName);
 
     }
@@ -119,6 +136,18 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
             addEligibilityFrame();
         } else if (e.getActionCommand().equals("OK")) {
             f3.dispose();
+        } else if (e.getActionCommand().equals("BIOL")) {
+            sp.addMajor("Biology");
+            major.setText("Biology has chosen to be your intended major");
+        } else if (e.getActionCommand().equals("CHEM")) {
+            sp.addMajor("Chemistry");
+            major.setText("Chemistry has chosen to be your intended major");
+        } else if (e.getActionCommand().equals("CPSC")) {
+            sp.addMajor("Computer Science");
+            major.setText("Computer Science has chosen to be your intended major");
+        } else if (e.getActionCommand().equals("MATH")) {
+            sp.addMajor("Mathematics");
+            major.setText("Mathematics has chosen to be your intended major");
         }
     }
 
@@ -151,10 +180,12 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
         f2.setVisible(true);
     }
 
+    // !!!! this  is the unsure method!
     public void updateCoursesLabelMessage(StudentProfile sp) {
         this.sp = sp;
         courses.setText("Courses Completed: " + courseListDisplayHelper());
     }
+
 
     public void addEligibilityFrame() {
         JButton button = new JButton("OK");
@@ -171,6 +202,7 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
         panel.setLayout(new GridLayout(0, 1));
         panel.add(eligibilityStatus);
+        panel.add(makeImage(pathToCongratsMessage));
         panel.add(button);
 
         // make a new Frame
@@ -179,6 +211,11 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
         f3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f3.pack();
         f3.setVisible(true);
+
+    }
+
+    public StudentProfile getSp() {
+        return sp;
     }
 
     public String doCheckEligibility() {
@@ -192,4 +229,70 @@ public class StudentProfilePanel extends JPanel implements ActionListener {
             return "\n you are not eligible to apply for you intended major this May\n";
         }
     }
+
+    private void majorButtonsSetUP() {
+        BIOL = new JButton("BIOL");
+        BIOL.setActionCommand("BIOL");
+        BIOL.addActionListener(this);
+
+        CHEM = new JButton("CHEM");
+        CHEM.setActionCommand("CHEM");
+        CHEM.addActionListener(this);
+
+        CPSC = new JButton("CPSC");
+        CPSC.setActionCommand("CPSC");
+        CPSC.addActionListener(this);
+
+        MATH = new JButton("MATH");
+        MATH.setActionCommand("MATH");
+        MATH.addActionListener(this);
+    }
+
+    // Major Buttons below
+
+    public void makeMajorPanel() {
+
+        setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 50));
+        setLayout(new GridLayout(0, 1));
+
+        // spacing label
+        JLabel space = new JLabel("          ");
+
+        // instantiate default label for when intended major hasn't chosen yet
+        major = new JLabel("No intended major chosen yet, please select from the following options");
+
+
+        majorButtonsSetUP();
+
+        add(space);
+        add(makeImage(pathToMajorMessage));
+        add(major);
+        add(BIOL);
+        add(CHEM);
+        add(CPSC);
+        add(MATH);
+    }
+
+
+    public void updateMajorLabelMessage(StudentProfile sp) {
+        if (sp.getMajor() == null) {
+            major.setText("No intended major chosen yet, please select from the following options");
+        } else {
+            major.setText(sp.getMajor() + " has chosen to be your intended major");
+        }
+    }
+
+    private JLabel makeImage(String pathToFile) {
+
+        BufferedImage img = new BufferedImage(20, 20, BufferedImage.TYPE_3BYTE_BGR);
+        try {
+            img = ImageIO.read(new File(pathToFile));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ImageIcon icon = new ImageIcon(img);
+        JLabel myLabel = new JLabel(icon);
+        return myLabel;
+    }
+
 }

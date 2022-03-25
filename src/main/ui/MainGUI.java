@@ -2,26 +2,25 @@ package ui;
 
 import model.StudentProfile;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 //
 // Bibliography: https://introcs.cs.princeton.edu/java/15inout/GUI.java.html
 public class MainGUI implements ActionListener {
 
-    private static JButton BIOL;
-    private static JButton CHEM;
-    private static JButton CPSC;
-    private static JButton MATH;
+    private static String pathToIcon = "./data/IMG_4527.PNG";
 
     private StudentProfile student;
 
-    private JLabel major;
-    private JPanel panel;
-    private JPanel studentProfilePanel;
-    private JPanel saveAndLoadPanel;
+    private StudentProfilePanel studentProfilePanel;
+    private SaveAndLoadPanel saveAndLoadPanel;
 
     private JFrame f1;
 
@@ -31,21 +30,6 @@ public class MainGUI implements ActionListener {
         // instantiate default student & display studentProfilePanel with text
         studentProfileSetUp();
 
-        // set up the major options button
-        majorButtonsSetUP();
-
-        // instantiate default label for when intended major hasn't chosen yet
-        major = new JLabel("No intended major chosen yet, please select from the following options");
-
-        // set up the panel with the clickable major option buttons and text
-        panel = new JPanel();
-        panel.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
-        panel.add(major);
-        panel.add(BIOL);
-        panel.add(CHEM);
-        panel.add(CPSC);
-        panel.add(MATH);
-
         // set up save and load panel
         saveAndLoadPanelSetUp();
 
@@ -53,26 +37,12 @@ public class MainGUI implements ActionListener {
         f1 = new JFrame("Student Profile");
         frameSetUP();
 
+
     }
 
 
     @Override
-    // process the button clicks
-    //This is the method that is called when JButton CHEM, BIOL, CPSC or MATH is clicked
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("BIOL")) {
-            student.addMajor("Biology");
-            major.setText("Biology has chosen to be your intended major");
-        } else if (e.getActionCommand().equals("CHEM")) {
-            student.addMajor("Chemistry");
-            major.setText("Chemistry has chosen to be your intended major");
-        } else if (e.getActionCommand().equals("CPSC")) {
-            student.addMajor("Computer Science");
-            major.setText("Computer Science has chosen to be your intended major");
-        } else if (e.getActionCommand().equals("MATH")) {
-            student.addMajor("Mathematics");
-            major.setText("Mathematics has chosen to be your intended major");
-        }
     }
 
     // NOTE: following method is adapted from SpaceInvader
@@ -85,10 +55,24 @@ public class MainGUI implements ActionListener {
 
     // EFFECTS: set up the main menu frame and display it
     private void frameSetUP() {
-        f1.add(panel, BorderLayout.CENTER);
-        f1.add(studentProfilePanel, BorderLayout.NORTH);
+
+        // print ubc label on the frame one !!!
+        BufferedImage img = new BufferedImage(240, 240, BufferedImage.TYPE_3BYTE_BGR);
+        try {
+            img = ImageIO.read(new File(pathToIcon));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ImageIcon icon = new ImageIcon(img);
+        JLabel ubcLabel = new JLabel(icon);
+
+        f1.add(ubcLabel, BorderLayout.EAST);
+        f1.add(studentProfilePanel, BorderLayout.CENTER);
         f1.add(saveAndLoadPanel, BorderLayout.AFTER_LAST_LINE);
         f1.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+
+        //f1.add(ubcLabel);
+
         f1.pack();
         centreOnScreen();
         f1.setVisible(true);
@@ -102,31 +86,9 @@ public class MainGUI implements ActionListener {
     }
 
     private void saveAndLoadPanelSetUp() {
-        saveAndLoadPanel = new SaveAndLoadPanel(student);
+        saveAndLoadPanel = new SaveAndLoadPanel(studentProfilePanel);
     }
 
-    //
-    private void majorButtonsSetUP() {
-        BIOL = new JButton("BIOL");
-        BIOL.setActionCommand("BIOL");
-        BIOL.addActionListener(this);
-
-        CHEM = new JButton("CHEM");
-        CHEM.setActionCommand("CHEM");
-        CHEM.addActionListener(this);
-
-        CPSC = new JButton("CPSC");
-        CPSC.setActionCommand("CPSC");
-        CPSC.addActionListener(this);
-
-        MATH = new JButton("MATH");
-        MATH.setActionCommand("MATH");
-        MATH.addActionListener(this);
-    }
-
-    public void setStudent(StudentProfile sp) {
-        this.student = sp;
-    }
     // create one Frame
     public static void main(String[] args) {
         new MainGUI();
