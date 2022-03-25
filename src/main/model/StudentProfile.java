@@ -106,20 +106,6 @@ public class StudentProfile implements Writable {
     }
 
 
-    // setters
-    public void setFirstName(String n) {
-        firstName = n;
-    }
-
-    public void setLastName(String n) {
-        lastName = n;
-    }
-
-    public void setId(int i) {
-        id = i;
-    }
-
-
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

@@ -96,5 +96,13 @@ class StudentProfileTest {
         assertTrue(sp.checkEligibility());
     }
 
+    @Test //method added in phase three:
+    public void checkMakeMyCourseListTest() {
+        StudentProfile sp = new StudentProfile("Celine", "Chen", 44176873);
+        sp.addCourse("CPSC 110");
+        sp.addCourse("BIOL 112");
+        assertEquals("CPSC 110  BIOL 112  ",sp.makeMyCourseList());
+    }
+
 
 }
