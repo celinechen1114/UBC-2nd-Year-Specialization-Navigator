@@ -37,12 +37,11 @@
 * As a user, I want to be able to load my student profile to file
 
 *PHASE THREE*
-* include a panel in which all the courses (Xs) that have already been added to my student profile (Y) are displayed
-* include a button/menu item that can add courses (Xs) to student profile
-* include a button/menu item that can pick an intended specialization and add it to my student profile
-* (optional) include a button/menu item that can check the user's eligibility to apply to the intended specialization
-* As a user, I want to be able to load and save the state of the application
-
+* Include a panel in which all the courses (Xs) that have already been added to my student profile (Y) are displayed
+* Include a button that can add courses (Xs) to student profile
+* Include a button that can pick an intended specialization and add it to my student profile
+* Include a button that can check the user's eligibility to apply to the intended specialization
+* Include two buttons that allow users to be able to load and save the state of the application
 
 
 ## References:
@@ -51,7 +50,7 @@
 * JsonSerializationDemo: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 * GUI: https://introcs.cs.princeton.edu/java/15inout/GUI.java.html
 * Space Invader https://github.students.cs.ubc.ca/CPSC210/B02-SpaceInvadersBase
-* 
+
 ## Bibliography:
 * IMG_4527.PNG adopted from https://citystudiovancouver.com/partners/ubc/
 * rest of the images used in the program are taken/made by Celine Chen
