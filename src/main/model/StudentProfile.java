@@ -6,7 +6,6 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 // Represents a Degree Navigator for first year UBC Science students having a student id, student first name,
@@ -44,6 +43,7 @@ public class StudentProfile implements Writable {
     */
     public void addCourse(String myCourse) {
         this.courseList.add(new Course(myCourse));
+        EventLog.getInstance().logEvent(new Event("Course" + myCourse + " has added to " + firstName + "'s profile."));
     }
 
     /*
@@ -52,6 +52,7 @@ public class StudentProfile implements Writable {
     */
     public void addMajor(String myMajor) {
         this.major = myMajor;
+        EventLog.getInstance().logEvent(new Event(myMajor + " has assigned to be " + firstName + "'s intended major."));
     }
 
     /*

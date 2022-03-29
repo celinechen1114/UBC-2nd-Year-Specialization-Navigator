@@ -49,7 +49,8 @@
 * Bibliography: https://introcs.cs.princeton.edu/java/15inout/GUI.java.html
 * JsonSerializationDemo: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 * GUI: https://introcs.cs.princeton.edu/java/15inout/GUI.java.html
-* Space Invader https://github.students.cs.ubc.ca/CPSC210/B02-SpaceInvadersBase
+* Space Invader: https://github.students.cs.ubc.ca/CPSC210/B02-SpaceInvadersBase
+* Window closing event by Wayan: https://kodejava.org/how-do-i-handle-a-window-closing-event/
 
 ## Bibliography:
 * IMG_4527.PNG adopted from https://citystudiovancouver.com/partners/ubc/

@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.StudentProfile;
 
 import javax.imageio.ImageIO;
@@ -7,6 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -62,12 +66,31 @@ public class MainGUI implements ActionListener {
         f1.add(studentProfilePanel, BorderLayout.CENTER);
         f1.add(saveAndLoadPanel, BorderLayout.AFTER_LAST_LINE);
 
-        f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Note: method adapted from Wayan on Kode
+        // EFFECTS: Print EventLog
+        // "Add window listener by implementing WindowAdapter class to
+        // the frame instance. To handle the close event we just need
+        // to implement the windowClosing() method."
+        f1.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                printLog(EventLog.getInstance());
+                System.exit(0);
+            }
+        });
+
         f1.pack();
         centreOnScreen();
         f1.setVisible(true);
     }
 
+
+
+    public void printLog(EventLog el) {
+        for (Event next : el) {
+            System.out.print(next.toString() + "\n\n");
+        }
+    }
 
     // EFFECTS: instantiates default student profile and the StudentProfilePanel
     private void studentProfilePanelSetUp() {
