@@ -43,7 +43,7 @@ public class StudentProfile implements Writable {
     */
     public void addCourse(String myCourse) {
         this.courseList.add(new Course(myCourse));
-        EventLog.getInstance().logEvent(new Event("Course" + myCourse + " has added to " + firstName + "'s profile."));
+        EventLog.getInstance().logEvent(new Event("Course " + myCourse + " has added to " + firstName + "'s profile."));
     }
 
     /*
@@ -70,13 +70,22 @@ public class StudentProfile implements Writable {
 
         Course prerequisiteCourse = myMajor.getPrerequisites();
         String namePrerequisiteCourse = prerequisiteCourse.getName();
-        return myCourseNames.contains(namePrerequisiteCourse);
+
+        boolean eligibility = myCourseNames.contains(namePrerequisiteCourse);
+
+        if (eligibility) {
+            EventLog.getInstance().logEvent(new Event(firstName + " is eligible to apply for " + major));
+        } else {
+            EventLog.getInstance().logEvent(new Event(firstName + " is NOT eligible to apply for " + major));
+        }
+
+        return eligibility;
     }
 
 
     //EFFECTS:
     public String makeMyCourseList() {      // added in phase 3
-        String myCourseList = new String();
+        String myCourseList = null;
 
         for (Course c : courseList) {
             myCourseList += c.getName() + "  ";
