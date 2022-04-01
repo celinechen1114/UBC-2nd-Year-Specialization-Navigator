@@ -51,6 +51,8 @@ For reducing duplicate code around constructing a JButton & JPanel, the same thi
 Another way is to refactor MainGUI class, and remove the association with teh Student Profile class in the Model Package. 
 As it's enough for MainGUI to just instantiate SaveAndLoadPanel and StudentProfile Panel, who already have a copy of the StudentProfile Object, to display the important information we need to see.
 
+
+
 ## References:
 * TellerApp: https://github.students.cs.ubc.ca/CPSC210/TellerApp
 * Bibliography: https://introcs.cs.princeton.edu/java/15inout/GUI.java.html
@@ -58,6 +60,7 @@ As it's enough for MainGUI to just instantiate SaveAndLoadPanel and StudentProfi
 * GUI: https://introcs.cs.princeton.edu/java/15inout/GUI.java.html
 * Space Invader: https://github.students.cs.ubc.ca/CPSC210/B02-SpaceInvadersBase
 * Window closing event by Wayan: https://kodejava.org/how-do-i-handle-a-window-closing-event/
+
 
 ## Bibliography:
 * IMG_4527.PNG adopted from https://citystudiovancouver.com/partners/ubc/
