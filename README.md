@@ -48,9 +48,8 @@
 reduce duplicate code seen in the methods addCourseFrame() & addEligibilityFrame() located inside  the StudentProfilePanel.
 This can be done by extracting a method to capture the duplicate behaviour of creating a pop-up frame of the methods, and call the extracted method from inside each of the original methods instead.
 For reducing duplicate code around constructing a JButton & JPanel, the same thing can be applied. Doing so will also help improve readability and increase cohesion. 
-Another way is to refactor MainGUI class, and remove the association with teh Student Profile class in the Model Package. 
-As it's enough for MainGUI to just instantiate SaveAndLoadPanel and StudentProfile Panel, who already have a copy of the StudentProfile Object, to display the important information we need to see.
-
+Another way is to refactor SaveAndLoadPanel and StudentProfilePanel class, and change the association with the MainGUI class to bi-directional, then remove the association with StudentProfile in both classes. 
+As we are able to get a copy or update the same copy of the StudentProfile in MainGUI. Doing so, we are then able to remove the association in between the two panel class as well. 
 
 
 ## References:
