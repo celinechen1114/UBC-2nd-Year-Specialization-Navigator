@@ -18,11 +18,6 @@ public class StudentProfile implements Writable {
     private List<Course> courseList;       // list of 1st year courses the student have taken
     private String major;                   // the intended major the student is planning to apply
 
-    // Added in Phase three
-    String myCourseList;      //courseList printed in String form
-
-
-
     /*
      * REQUIRES: firstName and lastName has a non-zero length; id must be a length of 8 numbers
      * EFFECTS: construct a student profile with name on profile set to firstName;

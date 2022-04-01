@@ -43,6 +43,13 @@
 * Include a button that can check the user's eligibility to apply to the intended specialization
 * Include two buttons that allow users to be able to load and save the state of the application
 
+*Phase 4: Task 3*
+* If I had more time to work on the project, I would 
+reduce duplicate code seen in the methods addCourseFrame() & addEligibilityFrame() located inside  the StudentProfilePanel.
+This can be done by extracting a method to capture the duplicate behaviour of creating a pop-up frame of the methods, and call the extracted method from inside each of the original methods instead.
+For reducing duplicate code around constructing a JButton & JPanel, the same thing can be applied. Doing so will also help improve readability and increase cohesion. 
+Another way is to refactor MainGUI class, and remove the association with teh Student Profile class in the Model Package. 
+As it's enough for MainGUI to just instantiate SaveAndLoadPanel and StudentProfile Panel, who already have a copy of the StudentProfile Object, to display the important information we need to see.
 
 ## References:
 * TellerApp: https://github.students.cs.ubc.ca/CPSC210/TellerApp
